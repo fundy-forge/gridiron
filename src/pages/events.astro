@@ -4,6 +4,46 @@ import eventsData from '../data/events.json';
 
 const upcoming = eventsData.events.filter(e => !e.recurring);
 const recurring = eventsData.events.filter(e => e.recurring);
+
+function gcalUrl(ev: { title: string; desc: string; calDate: string }): string {
+  const dt = ev.calDate.replace(/[-:]/g, '');
+  const end = (() => {
+    const d = new Date(ev.calDate);
+    d.setHours(d.getHours() + 2);
+    return d.toISOString().replace(/[-:]/g, '').slice(0, 15);
+  })();
+  const p = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: ev.title,
+    dates: `${dt}/${end}`,
+    details: ev.desc,
+    location: 'Gridiron Brewing Co., Hampton, NB',
+  });
+  return `https://calendar.google.com/calendar/render?${p.toString()}`;
+}
+
+function icsUri(ev: { title: string; desc: string; calDate: string }): string {
+  const fmt = (d: Date) =>
+    d.toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+  const start = new Date(ev.calDate);
+  const end = new Date(start);
+  end.setHours(end.getHours() + 2);
+  const uid = `${ev.calDate.replace(/\W/g, '')}-gridiron@gridironbrewing.ca`;
+  const lines = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'BEGIN:VEVENT',
+    `DTSTART:${fmt(start)}`,
+    `DTEND:${fmt(end)}`,
+    `SUMMARY:${ev.title}`,
+    `DESCRIPTION:${ev.desc.replace(/\n/g, '\\n')}`,
+    'LOCATION:Gridiron Brewing Co., Hampton, NB',
+    `UID:${uid}`,
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ].join('\r\n');
+  return `data:text/calendar;charset=utf-8,${encodeURIComponent(lines)}`;
+}
 ---
 
 <Layout title="Events & Music — Gridiron Brewing Co." activeNav="Events">
@@ -24,6 +64,11 @@ const recurring = eventsData.events.filter(e => e.recurring);
       <div class="event-list">
         {upcoming.map((ev, i) => (
           <div class={`event-row reveal${i > 0 ? ` d${Math.min(i, 3)}` : ''}`}>
+            {ev.image && (
+              <div class="event-thumb">
+                <img src={ev.image} alt={ev.title} loading="lazy" />
+              </div>
+            )}
             <div class="event-date">
               <span class="d">{ev.day}</span>
               <span class="m">{ev.month}</span>
@@ -31,6 +76,12 @@ const recurring = eventsData.events.filter(e => e.recurring);
             <div class="event-body">
               <h4>{ev.title}</h4>
               <p>{ev.desc}</p>
+              {ev.calDate && (
+                <div class="cal-links">
+                  <a class="cal-btn" href={gcalUrl(ev)} target="_blank" rel="noopener">+ Google Calendar</a>
+                  <a class="cal-btn" href={icsUri(ev)} download={`${ev.title.replace(/\s+/g, '-')}.ics`}>+ Apple / Outlook</a>
+                </div>
+              )}
             </div>
             <div class="event-meta">
               {ev.when}<br /><span class="free">{ev.cover}</span>
@@ -51,6 +102,11 @@ const recurring = eventsData.events.filter(e => e.recurring);
     <div class="event-list">
       {recurring.map((ev, i) => (
         <div class={`event-row reveal${i > 0 ? ` d${Math.min(i, 3)}` : ''}`}>
+          {ev.image && (
+            <div class="event-thumb">
+              <img src={ev.image} alt={ev.title} loading="lazy" />
+            </div>
+          )}
           <div class="event-date recurring-badge">
             <span class="rec-icon">↻</span>
           </div>
@@ -100,5 +156,53 @@ const recurring = eventsData.events.filter(e => e.recurring);
     font-size: 32px;
     color: var(--amber);
     line-height: 1;
+  }
+
+  /* Thumbnail */
+  .event-thumb {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    order: -1;
+  }
+  .event-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Calendar add links */
+  .cal-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .cal-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: 1px solid var(--amber);
+    border-radius: 4px;
+    padding: 4px 10px;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .cal-btn:hover {
+    background: var(--amber);
+    color: var(--ink);
+  }
+
+  @media (max-width: 600px) {
+    .event-thumb {
+      width: 60px;
+      height: 60px;
+    }
   }
 </style>

@@ -145,6 +145,21 @@ collections:
                 default: false
                 hint: "Turn on for weekly/regular events (Trivia, Deck Dogs, etc.). These appear in the Every Week section on the full events page, not as upcoming dates."
 
+              - label: "Event Photo"
+                name: image
+                widget: image
+                required: false
+                hint: "Optional photo shown on the event card. Upload or pick from the media library."
+
+              - label: "Calendar Date & Time"
+                name: calDate
+                widget: datetime
+                required: false
+                format: "YYYY-MM-DDTHH:mm"
+                date_format: "YYYY-MM-DD"
+                time_format: "HH:mm"
+                hint: "Used to generate 'Add to Calendar' links. Leave blank for recurring events."
+
   # ── COMMUNITY PHOTOS ────────────────────────────────────
   - name: community
     label: "📸 Community Photos"
