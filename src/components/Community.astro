@@ -152,7 +152,7 @@ const initial = photos.slice(0, 6);
   if (mosaic && pool.length > 6) {
     const shown = new Set(Array.from(mosaic.querySelectorAll('.mosaic-item')).map(el => el.getAttribute('data-src')));
 
-    setInterval(() => {
+    const cycleTimer = setInterval(() => {
       const items = Array.from(mosaic.querySelectorAll('.mosaic-item'));
       const slot = items[Math.floor(Math.random() * items.length)] as HTMLElement;
       const currentSrc = slot.getAttribute('data-src');
@@ -173,5 +173,6 @@ const initial = photos.slice(0, 6);
         slot.style.opacity = '1';
       }, 600);
     }, 3000);
+    window.addEventListener('beforeunload', () => clearInterval(cycleTimer), { once: true });
   }
 </script>

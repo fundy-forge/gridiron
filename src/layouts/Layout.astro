@@ -63,7 +63,9 @@ const { title = 'Gridiron Brewing Co. — Hampton, New Brunswick', activeNav } =
       });
     </script>
     <Navbar activeNav={activeNav} />
-    <slot />
+    <main>
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>
