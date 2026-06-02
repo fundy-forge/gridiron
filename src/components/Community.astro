@@ -23,15 +23,14 @@ const initial = photos.slice(0, 6);
         </p>
       </div>
 
-      <!-- Photo mosaic -->
-      <div class="community-mosaic reveal d1" id="community-mosaic">
+      <!-- Photo mosaic — data-pool carries the full JSON pool for client-side cycling -->
+      <div class="community-mosaic reveal d1" id="community-mosaic" data-pool={JSON.stringify(photos)}>
         {initial.map(p => (
           <div class="mosaic-item" data-src={p.src} data-alt={p.alt}>
             <img src={p.src} alt={p.alt} loading="lazy" decoding="async" />
           </div>
         ))}
       </div>
-      <script type="application/json" id="community-pool">{JSON.stringify(photos)}</script>
 
       <!-- Lightbox overlay (mobile tap) -->
       <div id="community-lightbox" aria-hidden="true">
@@ -123,10 +122,9 @@ const initial = photos.slice(0, 6);
 <script>
   const lightbox = document.getElementById('community-lightbox');
   const lightboxImg = document.getElementById('community-lightbox-img') as HTMLImageElement | null;
-  const mosaic = document.getElementById('community-mosaic');
-  const poolEl = document.getElementById('community-pool');
+  const mosaic = document.getElementById('community-mosaic') as HTMLElement | null;
 
-  const pool: { src: string; alt: string }[] = poolEl ? JSON.parse(poolEl.textContent || '[]') : [];
+  const pool: { src: string; alt: string }[] = JSON.parse(mosaic?.dataset.pool || '[]');
 
   function bindLightbox(item: Element) {
     item.addEventListener('click', () => {
