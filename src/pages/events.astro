@@ -61,15 +61,24 @@ function icsUri(ev: { title: string; desc: string; calDate: string }): string {
         <span class="kicker reveal">Mark Your Calendar</span>
         <h2 class="reveal d1">Coming Up</h2>
       </div>
-      <div class="event-list">
+      <div class="event-list ev-list-img">
         {upcoming.map((ev, i) => (
           <div class={`event-row reveal${i > 0 ? ` d${Math.min(i, 3)}` : ''}`}>
-            <div class={`event-date${ev.image ? ' has-img' : ''}`}>
-              {ev.image && <img src={ev.image} alt="" aria-hidden="true" />}
-              <span class="d">{ev.day}</span>
-              <span class="m">{ev.month}</span>
+            <!-- Thumbnail column -->
+            <div class="ev-thumb" data-src={ev.image || ''} data-alt={ev.title}>
+              {ev.image
+                ? <img src={ev.image} alt={ev.title} loading="lazy" />
+                : <div class="ev-thumb-date"><span class="d">{ev.day}</span><span class="m">{ev.month}</span></div>
+              }
             </div>
+            <!-- Body: date badge + text -->
             <div class="event-body">
+              {ev.image && ev.day && (
+                <div class="ev-date-badge">
+                  <span class="d">{ev.day}</span>
+                  <span class="m">{ev.month}</span>
+                </div>
+              )}
               <h4>{ev.title}</h4>
               <p>{ev.desc}</p>
               {ev.calDate && (
@@ -95,14 +104,17 @@ function icsUri(ev: { title: string; desc: string; calDate: string }): string {
       <h2 class="reveal d1">Regular Nights</h2>
       <p class="lead reveal d1">These happen on the regular — no date required. Just show up.</p>
     </div>
-    <div class="event-list">
+    <div class="event-list ev-list-img">
       {recurring.map((ev, i) => (
         <div class={`event-row reveal${i > 0 ? ` d${Math.min(i, 3)}` : ''}`}>
-          <div class={`event-date recurring-badge${ev.image ? ' has-img' : ''}`}>
-            {ev.image && <img src={ev.image} alt="" aria-hidden="true" />}
-            <span class="rec-icon">↻</span>
+          <div class="ev-thumb" data-src={ev.image || ''} data-alt={ev.title}>
+            {ev.image
+              ? <img src={ev.image} alt={ev.title} loading="lazy" />
+              : <span class="rec-icon">↻</span>
+            }
           </div>
           <div class="event-body">
+            {ev.image && <div class="ev-rec-badge">↻ Weekly</div>}
             <h4>{ev.title}</h4>
             <p>{ev.desc}</p>
           </div>
@@ -124,9 +136,15 @@ function icsUri(ev: { title: string; desc: string; calDate: string }): string {
     </div>
   </section>
 
+  <!-- Lightbox -->
+  <div id="ev-lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+    <img id="ev-lightbox-img" src="" alt="" />
+  </div>
+
 </Layout>
 
 <script>
+  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && reveals.length) {
     const io = new IntersectionObserver((entries) => {
@@ -136,59 +154,108 @@ function icsUri(ev: { title: string; desc: string; calDate: string }): string {
   } else {
     reveals.forEach((el) => el.classList.add('in'));
   }
+
+  // Lightbox
+  const lightbox = document.getElementById('ev-lightbox');
+  const lbImg = document.getElementById('ev-lightbox-img') as HTMLImageElement | null;
+
+  function openLightbox(src: string, alt: string) {
+    if (!lightbox || !lbImg || !src) return;
+    lbImg.src = src;
+    lbImg.alt = alt;
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.ev-thumb[data-src]').forEach((el) => {
+    const src = el.getAttribute('data-src') || '';
+    const alt = el.getAttribute('data-alt') || '';
+    if (!src) return;
+    el.addEventListener('click', () => openLightbox(src, alt));
+  });
+
+  lightbox?.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 
 <style>
-  /* Image overlaid in the date column — keeps the 3-column grid intact */
-  .event-date.has-img {
-    position: relative;
-    height: 90px;
-    border-radius: 6px;
+  /* Override the event-row first column for image lists */
+  .ev-list-img .event-row {
+    grid-template-columns: 160px 1fr auto;
+  }
+
+  /* Thumbnail cell */
+  .ev-thumb {
+    width: 160px;
+    height: 110px;
+    border-radius: 8px;
     overflow: hidden;
+    cursor: zoom-in;
+    flex-shrink: 0;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    background: var(--paper-2, #e8dcc8);
   }
-  .event-date.has-img img {
-    position: absolute;
-    inset: 0;
+  .ev-thumb img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 0;
+    display: block;
+    transition: transform 0.35s ease, filter 0.35s ease;
   }
-  /* Dark scrim so the date/icon is readable */
-  .event-date.has-img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.48);
-    z-index: 1;
-  }
-  .event-date.has-img .d,
-  .event-date.has-img .m,
-  .event-date.has-img .rec-icon {
-    position: relative;
-    z-index: 2;
-    color: #fff;
-  }
-  .event-date.has-img .m {
-    color: var(--amber-bright, #f5a623);
+  .ev-thumb:hover img {
+    transform: scale(1.06);
+    filter: brightness(1.08);
   }
 
-  .recurring-badge {
+  /* Fallback when no image */
+  .ev-thumb-date {
+    font-family: 'Anton', sans-serif;
+    text-align: center;
+    line-height: 0.85;
+  }
+  .ev-thumb-date .d { font-size: 38px; display: block; }
+  .ev-thumb-date .m { font-size: 14px; color: var(--amber); display: block; }
+  .rec-icon { font-size: 32px; color: var(--amber); }
+
+  /* Inline date badge inside event-body */
+  .ev-date-badge {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 6px;
   }
-  .rec-icon {
-    font-size: 32px;
-    color: var(--amber);
+  .ev-date-badge .d {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
     line-height: 1;
+    color: var(--ink);
+  }
+  .ev-date-badge .m {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--amber);
+    text-transform: uppercase;
+  }
+  .ev-rec-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 6px;
   }
 
-  /* Calendar add links */
+  /* Calendar links */
   .cal-links {
     display: flex;
     gap: 10px;
@@ -211,5 +278,41 @@ function icsUri(ev: { title: string; desc: string; calDate: string }): string {
   .cal-btn:hover {
     background: var(--amber);
     color: var(--ink);
+  }
+
+  /* Lightbox */
+  #ev-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  #ev-lightbox.open { display: flex; }
+  #ev-lightbox-img {
+    max-width: 92vw;
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .ev-list-img .event-row {
+      grid-template-columns: 90px 1fr;
+      gap: 14px;
+    }
+    .ev-thumb {
+      width: 90px;
+      height: 80px;
+    }
+    .event-meta {
+      grid-column: 2;
+      text-align: left;
+    }
   }
 </style>
