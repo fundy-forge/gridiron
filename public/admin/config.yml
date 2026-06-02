@@ -132,3 +132,9 @@ collections:
                 name: when
                 widget: string
                 hint: "e.g. Fri · 8:00 PM or Sat · 4:00 PM"
+
+              - label: "Cover"
+                name: cover
+                widget: string
+                default: "No Fee"
+                hint: "e.g. No Fee, $10 at the door, Free with RSVP"
