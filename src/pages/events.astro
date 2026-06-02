@@ -67,7 +67,7 @@ function icsUri(ev: { title: string; desc: string; calDate: string }): string {
             <!-- Thumbnail column -->
             <div class="ev-thumb" data-src={ev.image || ''} data-alt={ev.title}>
               {ev.image
-                ? <img src={ev.image} alt={ev.title} loading="lazy" />
+                ? <img src={ev.image} alt={ev.title} loading="lazy" decoding="async" />
                 : <div class="ev-thumb-date"><span class="d">{ev.day}</span><span class="m">{ev.month}</span></div>
               }
             </div>
@@ -109,7 +109,7 @@ function icsUri(ev: { title: string; desc: string; calDate: string }): string {
         <div class={`event-row reveal${i > 0 ? ` d${Math.min(i, 3)}` : ''}`}>
           <div class="ev-thumb" data-src={ev.image || ''} data-alt={ev.title}>
             {ev.image
-              ? <img src={ev.image} alt={ev.title} loading="lazy" />
+              ? <img src={ev.image} alt={ev.title} loading="lazy" decoding="async" />
               : <span class="rec-icon">↻</span>
             }
           </div>
