@@ -56,14 +56,14 @@ function icsUri(ev: { title: string; desc: string; calDate: string }): string {
 
   <!-- Upcoming special events -->
   {upcoming.length > 0 && (
-    <section class="section">
+    <section class="section" id="ev-upcoming">
       <div class="section-head">
         <span class="kicker reveal">Mark Your Calendar</span>
         <h2 class="reveal d1">Coming Up</h2>
       </div>
       <div class="event-list ev-list-img">
         {upcoming.map((ev, i) => (
-          <div class={`event-row reveal${i > 0 ? ` d${Math.min(i, 3)}` : ''}`}>
+          <div class={`event-row reveal${i > 0 ? ` d${Math.min(i, 3)}` : ''}`} data-caldate={ev.calDate || ''}>
             <!-- Thumbnail column -->
             <div class="ev-thumb" data-src={ev.image || ''} data-alt={ev.title}>
               <img src={ev.image || '/assets/events/placeholder.svg'} alt={ev.image ? ev.title : ''} loading="lazy" decoding="async" />
@@ -166,6 +166,22 @@ function icsUri(ev: { title: string; desc: string; calDate: string }): string {
 
   lightbox?.addEventListener('click', closeLightbox);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Auto-hide past events
+  const now = new Date();
+  const upcomingSection = document.getElementById('ev-upcoming');
+  if (upcomingSection) {
+    let visible = 0;
+    upcomingSection.querySelectorAll('.event-row[data-caldate]').forEach((row) => {
+      const d = (row as HTMLElement).dataset.caldate;
+      if (d && new Date(d) < now) {
+        (row as HTMLElement).style.display = 'none';
+      } else {
+        visible++;
+      }
+    });
+    if (visible === 0) upcomingSection.style.display = 'none';
+  }
 </script>
 
 <style>
