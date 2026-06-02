@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visit — Gridiron Brewing Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header scrolled" data-screen-label="Header">
+  <div class="nav-inner">
+    <a class="brand" href="Gridiron Brewing.html">
+      <img class="emblem" src="assets/logo-emblem-pad.png" alt="Gridiron Brewing">
+      <span class="wm">Gridiron<br>Brewing</span>
+    </a>
+    <nav class="nav-links">
+      <a href="Beers.html">Beers</a>
+      <a href="Gridiron Brewing.html#events">Events</a>
+      <a href="Gridiron Brewing.html#story">Our Story</a>
+      <a href="Visit.html" class="active">Visit</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-amber btn-sm" href="#directions">Directions →</a>
+      <button class="menu-btn" aria-label="Menu">Menu</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PAGE HERO ============ -->
+<section class="page-hero grain" data-screen-label="Visit hero">
+  <span class="kicker">№ 03 — The Taproom · Hampton, NB</span>
+  <h1>Come Visit</h1>
+  <p>Fourteen Riverside Lane, on the bank of the Kennebecasis. Twelve taps, a snack kitchen, a patio, and room for the whole crew — dogs and kids included.</p>
+</section>
+
+<!-- ============ HOURS + ADDRESS ============ -->
+<section class="band-dark" data-screen-label="Hours">
+  <div class="section" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+    <div class="reveal">
+      <span class="kicker" style="color:var(--amber-bright);">Opening Hours</span>
+      <h2 class="display" style="font-size:clamp(34px,4.4vw,56px);margin:14px 0 26px;color:var(--cream);">When We're Pouring</h2>
+      <table class="hours-table" id="hours">
+        <tr><td>Monday</td><td class="closed">Closed</td></tr>
+        <tr><td>Tuesday</td><td class="closed">Closed</td></tr>
+        <tr><td>Wednesday</td><td>4:00 PM — 10:00 PM</td></tr>
+        <tr><td>Thursday</td><td>4:00 PM — 10:00 PM</td></tr>
+        <tr><td>Friday</td><td>12:00 PM — Late</td></tr>
+        <tr><td>Saturday</td><td>12:00 PM — Late</td></tr>
+        <tr><td>Sunday</td><td>12:00 PM — 8:00 PM</td></tr>
+      </table>
+      <p class="mono" style="font-size:12px;letter-spacing:.08em;color:rgba(250,243,228,.5);margin-top:18px;">Kitchen closes one hour before last call. Growler fills until close.</p>
+    </div>
+    <div class="reveal d1">
+      <span class="kicker" style="color:var(--amber-bright);">Find Us</span>
+      <h2 class="display" style="font-size:clamp(34px,4.4vw,56px);margin:14px 0 26px;color:var(--cream);">The Address</h2>
+      <p style="font-family:'Anton';font-size:30px;line-height:1.05;text-transform:uppercase;color:var(--cream);">14 Riverside Lane<br>Hampton, NB E5N 6B2</p>
+      <div style="margin-top:22px;display:flex;flex-direction:column;gap:12px;font-family:'Space Mono',monospace;font-size:14px;letter-spacing:.04em;color:rgba(250,243,228,.82);">
+        <span>☏ &nbsp;(506) 555-1842</span>
+        <span>✉ &nbsp;cheers@gridironbrewing.ca</span>
+      </div>
+      <div style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;">
+        <a class="btn btn-amber" href="#directions">Get Directions →</a>
+        <a class="btn btn-ghost" href="tel:+15065551842" style="color:var(--cream);">Call Ahead</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAP + GETTING HERE ============ -->
+<section class="section" id="directions" data-screen-label="Directions">
+  <div class="section-head">
+    <span class="kicker reveal">Getting Here</span>
+    <h2 class="reveal d1">On The River</h2>
+    <p class="lead reveal d1">Twenty-five minutes from uptown Saint John, right where Main Street bends to meet the water. Easy to find, easier to stay.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:stretch;">
+    <div class="ph reveal" style="min-height:420px;border-radius:6px;" data-screen-label="Map"><span class="pl">Map — 14 Riverside Lane</span></div>
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <div class="reveal d1" style="background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:24px;">
+        <h4 style="font-family:'Space Mono';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:10px;">By Car</h4>
+        <p style="font-size:15px;color:var(--ink-2);line-height:1.6;">Free lot off Riverside Lane, plus street parking along Main. Designated-driver soft drinks always on the house.</p>
+      </div>
+      <div class="reveal d2" style="background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:24px;">
+        <h4 style="font-family:'Space Mono';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:10px;">On Foot &amp; Bike</h4>
+        <p style="font-size:15px;color:var(--ink-2);line-height:1.6;">Right on the Hampton trail network. Bike racks out front, and the river boardwalk runs to our patio gate.</p>
+      </div>
+      <div class="reveal d3" style="background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:24px;">
+        <h4 style="font-family:'Space Mono';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:10px;">Good To Know</h4>
+        <p style="font-size:15px;color:var(--ink-2);line-height:1.6;">Dog &amp; kid friendly · wheelchair accessible · cards only · 19+ after 8 PM. No reservations — just turn up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRIVATE HIRE ============ -->
+<section class="band-amber" data-screen-label="Private hire">
+  <div class="section" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+    <div class="ph reveal" style="aspect-ratio:4/3;border-radius:6px;color:#5a2c14;"><span class="pl">Private Event Space</span></div>
+    <div>
+      <span class="kicker reveal" style="color:#5a2c14;">Private Hire</span>
+      <h2 class="display reveal d1" style="font-size:clamp(36px,4.8vw,64px);margin:14px 0 18px;color:#1c130c;">Book The<br>Back Room</h2>
+      <p class="reveal d1" style="font-size:17px;line-height:1.65;color:#3a1f0e;max-width:460px;">Birthdays, wakes, work dos, or just a Tuesday with forty of your closest friends. The back room seats 40, the patio holds more, and we'll build a beer flight around whatever you're celebrating.</p>
+      <div class="reveal d2" style="margin-top:28px;">
+        <a class="btn" href="mailto:cheers@gridironbrewing.ca" style="background:#1c130c;color:var(--cream);">Enquire About Events →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" data-screen-label="Footer">
+  <div class="foot-inner">
+    <div>
+      <a class="brand" href="Gridiron Brewing.html">
+        <img class="footlogo" src="assets/logo-horizontal-cream.png" alt="Gridiron Brewing — Hampton, NB">
+      </a>
+      <p class="foot-blurb">Small-batch craft beer &amp; taproom on the shores of the Kennebecasis. Local ingredients, global inspiration — brewed by hand in Hampton, New Brunswick.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Visit</h4>
+      <p>14 Riverside Lane<br>Hampton, NB E5N 6B2</p>
+      <a href="Visit.html">Hours &amp; Directions</a>
+      <a href="tel:+15065551842">(506) 555-1842</a>
+    </div>
+    <div class="foot-col">
+      <h4>Explore</h4>
+      <a href="Beers.html">Tap List</a>
+      <a href="Gridiron Brewing.html#events">Events</a>
+      <a href="Gridiron Brewing.html#story">Our Story</a>
+      <a href="Visit.html">Private Hire</a>
+    </div>
+    <div class="foot-col">
+      <h4>Follow</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">Untappd</a>
+      <a href="#">Newsletter</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Gridiron Brewing Co.</span>
+    <span>Please drink responsibly · 19+</span>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+  /* highlight today's hours row */
+  (function(){
+    var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var today=days[new Date().getDay()];
+    document.querySelectorAll('#hours tr').forEach(function(tr){
+      if(tr.firstElementChild && tr.firstElementChild.textContent.trim()===today){tr.classList.add('today');}
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Visit — Gridiron Brewing Co." activeNav="Visit">
+  <section class="page-hero grain">
+    <span class="kicker">The Taproom · Hampton, NB</span>
+    <h1>Come Visit</h1>
+    <p>1051 Main Street, Hampton, New Brunswick. Twelve taps, food trucks on occasion, a patio, and room for the whole crew — dogs and kids included.</p>
+  </section>
+
+  <section class="band-dark">
+    <div class="section visit-hours-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+      <div class="reveal">
+        <span class="kicker" style="color:var(--amber-bright);">Opening Hours</span>
+        <h2 class="display" style="font-size:clamp(34px,4.4vw,56px);margin:14px 0 6px;color:var(--cream);">When We're Pouring</h2>
+        <p class="mono" style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-bright);margin-bottom:22px;">Summer Hours</p>
+        <table class="hours-table" id="hours">
+          <tr><td>Monday</td><td class="closed">Closed</td></tr>
+          <tr><td>Tuesday</td><td>4:00 PM — 8:00 PM</td></tr>
+          <tr><td>Wednesday</td><td>4:00 PM — 8:00 PM</td></tr>
+          <tr><td>Thursday</td><td>12:00 PM — 8:00 PM</td></tr>
+          <tr><td>Friday</td><td>12:00 PM — 9:00 PM</td></tr>
+          <tr><td>Saturday</td><td>12:00 PM — 9:00 PM</td></tr>
+          <tr><td>Sunday</td><td>12:00 PM — 7:00 PM</td></tr>
+        </table>
+        <p class="mono" style="font-size:15px;letter-spacing:.06em;color:var(--cream);margin-top:18px;">Usually open on Holiday Mondays — check social media for updates.</p>
+        <div style="margin-top:24px;padding-top:24px;border-top:1px solid rgba(250,243,228,.12);display:flex;gap:24px;">
+          <div>
+            <p style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-bright);margin-bottom:6px;">16 oz</p>
+            <p style="font-size:24px;font-family:'Anton',sans-serif;color:var(--cream);">$9</p>
+          </div>
+          <div>
+            <p style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-bright);margin-bottom:6px;">20 oz</p>
+            <p style="font-size:24px;font-family:'Anton',sans-serif;color:var(--cream);">$10</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <span class="kicker" style="color:var(--amber-bright);">Find Us</span>
+        <h2 class="display" style="font-size:clamp(34px,4.4vw,56px);margin:14px 0 26px;color:var(--cream);">The Address</h2>
+        <p style="font-family:'Anton';font-size:30px;line-height:1.05;text-transform:uppercase;color:var(--cream);">1051 Main Street<br />Hampton, New Brunswick</p>
+        <div style="margin-top:22px;display:flex;flex-direction:column;gap:12px;font-family:'Space Mono',monospace;font-size:14px;letter-spacing:.04em;color:rgba(250,243,228,.82);">
+          <span>☏ &nbsp;(506) 832-4592</span>
+          <span>✉ &nbsp;info@gridironbrewing.com</span>
+        </div>
+        <div style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;">
+          <a class="btn btn-amber" href="#directions">Get Directions →</a>
+          <a class="btn btn-ghost" href="tel:+15068324592" style="color:var(--cream);">Call Ahead</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="directions">
+    <div class="section-head">
+      <span class="kicker reveal">Getting Here</span>
+      <h2 class="reveal d1">On The River</h2>
+      <p class="lead reveal d1">Twenty-five minutes from uptown Saint John, right where Main Street bends to meet the water. Easy to find, easier to stay.</p>
+    </div>
+    <div class="visit-directions-grid" style="display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:stretch;">
+      <div class="reveal" style="min-height:420px;border-radius:6px;overflow:hidden;border:1px solid var(--line);">
+        <iframe
+          src="https://maps.google.com/maps?q=1051+Main+Street,+Hampton,+New+Brunswick,+Canada&t=k&output=embed"
+          width="100%"
+          height="420"
+          style="border:0;display:block;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Gridiron Brewing Co. — 1051 Main Street, Hampton, NB">
+        </iframe>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <div class="reveal d1" style="background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:24px;">
+          <h4 style="font-family:'Space Mono';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:10px;">Parking</h4>
+          <p style="font-size:15px;color:var(--ink-2);line-height:1.6;">Parking on-site is limited — arriving early is your best bet. Side street parking is available behind the brewery, and the River Centre public lot is just a short walk away.</p>
+        </div>
+        <div class="reveal d2" style="background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:24px;">
+          <h4 style="font-family:'Space Mono';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:10px;">Kids &amp; Families</h4>
+          <p style="font-size:15px;color:var(--ink-2);line-height:1.6;">Families are always welcome. We have board games and colouring activities for the little ones, and a growing selection of non-alcoholic drinks to keep everyone happy.</p>
+        </div>
+        <div class="reveal d3" style="background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:24px;">
+          <h4 style="font-family:'Space Mono';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:10px;">Accessibility</h4>
+          <p style="font-size:15px;color:var(--ink-2);line-height:1.6;">A ramp provides access to the deck. Interior entry has a small lift — we're actively working to improve accessibility throughout. Give us a call ahead if you have questions and we'll do our best to help.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="food">
+    <div class="section-head">
+      <span class="kicker reveal">Food</span>
+      <h2 class="reveal d1">Food Trucks &amp; Eats</h2>
+      <p class="lead reveal d1">We're lucky to have some great local vendors roll up on weekends through spring, summer, and early fall. Check our social media for who's on-site each week — and feel free to bring your own food from anywhere in Hampton while you sip something from our bar.</p>
+    </div>
+
+    <div class="visit-food-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px;">
+      <div class="reveal" style="background:var(--cream);border:1px solid var(--line);border-radius:6px;overflow:hidden;">
+        <div style="aspect-ratio:4/3;overflow:hidden;">
+          <img src="/assets/food/sakura-hibachi.png" alt="Sakura Hibachi food truck" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" decoding="async" />
+        </div>
+        <div style="padding:22px 24px;">
+          <h3 style="font-family:'Anton',sans-serif;font-weight:400;font-size:24px;text-transform:uppercase;margin:0 0 6px;">Sakura Hibachi</h3>
+          <p style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin:0 0 12px;">Japanese Cuisine</p>
+          <p style="font-size:14px;color:var(--ink-2);line-height:1.6;margin:0 0 16px;">Fresh hibachi and Japanese favourites, cooked right outside on the patio.</p>
+          <a href="https://www.facebook.com/profile.php?id=61550952335901" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);text-decoration:none;">Follow on Facebook →</a>
+        </div>
+      </div>
+      <div class="reveal d1" style="background:var(--cream);border:1px solid var(--line);border-radius:6px;overflow:hidden;">
+        <div style="aspect-ratio:4/3;overflow:hidden;">
+          <img src="/assets/food/stoked-pizza.png" alt="Stoked Artisan Pizza food truck" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" decoding="async" />
+        </div>
+        <div style="padding:22px 24px;">
+          <h3 style="font-family:'Anton',sans-serif;font-weight:400;font-size:24px;text-transform:uppercase;margin:0 0 6px;">Stoked Artisan Pizza</h3>
+          <p style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin:0 0 12px;">Artisan Pizza</p>
+          <p style="font-size:14px;color:var(--ink-2);line-height:1.6;margin:0 0 16px;">Wood-fired artisan pizzas made fresh to order. The perfect pairing for a cold pint.</p>
+          <a href="https://www.facebook.com/stokedpizzanb" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);text-decoration:none;">Follow on Facebook →</a>
+        </div>
+      </div>
+      <div class="reveal d2" style="background:var(--cream);border:1px solid var(--line);border-radius:6px;overflow:hidden;">
+        <div style="aspect-ratio:4/3;overflow:hidden;">
+          <img src="/assets/food/costa-nachos.png" alt="Costa Nachos food truck" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" decoding="async" />
+        </div>
+        <div style="padding:22px 24px;">
+          <h3 style="font-family:'Anton',sans-serif;font-weight:400;font-size:24px;text-transform:uppercase;margin:0 0 6px;">Costa Nachos</h3>
+          <p style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin:0 0 12px;">Nachos &amp; Mexican Fare</p>
+          <p style="font-size:14px;color:var(--ink-2);line-height:1.6;margin:0 0 16px;">Loaded nachos and bold Mexican flavours. Hard to stop at one round.</p>
+          <a href="https://www.facebook.com/costanacho" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);text-decoration:none;">Follow on Facebook →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="background:var(--ink);color:var(--cream);border-radius:6px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <p style="font-size:15px;line-height:1.6;margin:0;max-width:560px;color:rgba(250,243,228,.8);">
+        <b style="color:var(--cream);">Bring your own too.</b> We welcome outside food from local Hampton restaurants or home — just grab a cold one from our bar to go with it.
+      </p>
+      <a href="https://www.instagram.com/gridironbrewing/" target="_blank" rel="noopener" class="btn btn-amber">Check Who's On This Week →</a>
+    </div>
+  </section>
+
+  <section class="band-amber" id="private">
+    <div class="section visit-private-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+      <div class="reveal" style="aspect-ratio:4/3;border-radius:6px;overflow:hidden;">
+        <img src="/assets/photos/crowded-bar.png" alt="Gridiron Brewing packed for an event" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" decoding="async" />
+      </div>
+      <div>
+        <span class="kicker reveal" style="color:#5a2c14;">Private Hire</span>
+        <h2 class="display reveal d1" style="font-size:clamp(36px,4.8vw,64px);margin:14px 0 18px;color:#1c130c;line-height:0.92;">Book The<br />Back Room</h2>
+        <p class="reveal d1" style="font-size:17px;line-height:1.65;color:#3a1f0e;max-width:460px;">Birthdays, wakes, work dos, or just a Tuesday with forty of your closest friends. The back room seats 40, the patio holds more, and we'll build a beer flight around whatever you're celebrating.</p>
+        <div class="reveal d2" style="margin-top:28px;">
+          <a class="btn" href="mailto:info@gridironbrewing.com" style="background:#1c130c;color:var(--cream);">Enquire About Events →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  (function () {
+    const reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && reveals.length) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      reveals.forEach((el) => io.observe(el));
+    } else {
+      reveals.forEach((el) => el.classList.add('in'));
+    }
+
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const today = days[new Date().getDay()];
+    document.querySelectorAll('#hours tr').forEach((tr) => {
+      const first = tr.firstElementChild;
+      if (first && first.textContent?.trim() === today) tr.classList.add('today');
+    });
+  })();
+</script>

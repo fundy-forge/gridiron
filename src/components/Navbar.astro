@@ -1,90 +1,50 @@
 ---
+interface Props {
+  activeNav?: string;
+}
+const { activeNav } = Astro.props;
+
 const navLinks = [
-  { label: 'Beers', href: '#beers' },
-  { label: 'Taproom', href: '#taproom' },
-  { label: 'Events', href: '#events' },
-  { label: 'About', href: '#about' },
+  { label: 'Drinks', href: '/beers' },
+  { label: 'Food', href: '/visit#food' },
+  { label: 'Events', href: '/#events' },
+  { label: 'Visit', href: '/visit' },
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
-  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-2 group">
-      <span class="text-amber-400 text-2xl">⬡</span>
-      <span class="text-white font-black text-xl tracking-widest uppercase">Gridiron</span>
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="brand" href="/">
+      <img class="emblem" src="/assets/logos/logo_transparent.png" alt="Gridiron Brewing" />
+      <img class="wordmark" src="/assets/logos/gridiron_stacked_transparent.png" alt="Gridiron Brewing" />
     </a>
-
-    <!-- Desktop links -->
-    <ul class="hidden md:flex items-center gap-8">
+    <nav class="nav-links">
       {navLinks.map(({ label, href }) => (
-        <li>
-          <a
-            href={href}
-            class="text-zinc-400 hover:text-white text-sm font-medium tracking-widest uppercase transition-colors duration-200"
-          >
-            {label}
-          </a>
-        </li>
+        <a href={href} class={activeNav === label ? 'active' : ''}>{label}</a>
       ))}
-    </ul>
-
-    <a
-      href="#taproom"
-      class="hidden md:inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-black text-sm font-bold tracking-widest uppercase px-5 py-2.5 transition-colors duration-200"
-    >
-      Visit Us
-    </a>
-
-    <!-- Mobile menu button -->
-    <button
-      id="menu-toggle"
-      class="md:hidden text-white p-2"
-      aria-label="Toggle menu"
-    >
-      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-  </nav>
-
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-white/10">
-    <ul class="flex flex-col px-6 py-4 gap-4">
-      {navLinks.map(({ label, href }) => (
-        <li>
-          <a
-            href={href}
-            class="block text-zinc-400 hover:text-white text-sm font-medium tracking-widest uppercase transition-colors duration-200"
-          >
-            {label}
-          </a>
-        </li>
-      ))}
-      <li>
-        <a
-          href="#taproom"
-          class="inline-flex bg-amber-400 hover:bg-amber-300 text-black text-sm font-bold tracking-widest uppercase px-5 py-2.5 transition-colors duration-200"
-        >
-          Visit Us
-        </a>
-      </li>
-    </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-amber btn-sm" href="/visit#directions">Find Us →</a>
+      <button class="menu-btn" aria-label="Menu">Menu</button>
+    </div>
   </div>
 </header>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
-  const iconOpen = document.getElementById('icon-open');
-  const iconClose = document.getElementById('icon-close');
+  const header = document.querySelector('.site-header');
+  function onScroll() {
+    if (!header) return;
+    header.classList.toggle('scrolled', window.scrollY > 12);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
-  toggle?.addEventListener('click', () => {
-    const isOpen = !menu?.classList.contains('hidden');
-    menu?.classList.toggle('hidden', isOpen);
-    iconOpen?.classList.toggle('hidden', !isOpen);
-    iconClose?.classList.toggle('hidden', isOpen);
-  });
+  const menuBtn = document.querySelector('.menu-btn');
+  const navLinks = document.querySelector('.nav-links');
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => navLinks.classList.remove('open'))
+    );
+  }
 </script>

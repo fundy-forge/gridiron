@@ -1,0 +1,40 @@
+---
+import { beers } from '../data/beers';
+const onTap = beers.filter(b => b.onTap && b.tag !== 'hidden');
+---
+
+<section class="band-dark" id="beers">
+  <div class="section">
+    <div class="section-head" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;">
+      <div>
+        <span class="kicker reveal">On Tap Now</span>
+        <h2 class="reveal d1">What's Pouring</h2>
+      </div>
+      <a class="btn btn-amber reveal d1" href="/beers">Full Tap List →</a>
+    </div>
+    <div class="beer-grid">
+      {onTap.map((beer, i) => (
+        <article class="beer-card reveal" style={`transition-delay:${Math.min(i,3) * 0.06}s`}>
+          <div class="beer-info">
+            <span class="style">{beer.style}</span>
+            <h3>{beer.name}</h3>
+            <p class="desc">{beer.desc}</p>
+            <div class="beer-specs">
+              <div class="s"><span>ABV</span><b>{beer.abv}%</b></div>
+              <div class="s"><span>IBU</span><b>{beer.ibu}</b></div>
+              <div class="tag-stack">
+                <span class={`tag${beer.tag === 'seasonal' ? ' seasonal' : ''}`}>
+                  {beer.tag === 'seasonal' ? 'Seasonal' : 'Flagship'}
+                </span>
+                <span class="tag ontap-tag">On Tap</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a class="btn btn-amber" href="/beers">See Full Tap List →</a>
+    </div>
+  </div>
+</section>

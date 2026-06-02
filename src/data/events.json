@@ -1,0 +1,8 @@
+{
+  "events": [
+    { "day": "06", "month": "JUN", "title": "The Marsh Reelers — Live", "desc": "East-coast folk & fiddle. Loud, fast, and a little sweaty.", "when": "Fri · 8:00 PM" },
+    { "day": "11", "month": "JUN", "title": "Wednesday Trivia Night",   "desc": "Six rounds, daft prizes, free pints for the winners.",       "when": "Wed · 7:30 PM" },
+    { "day": "14", "month": "JUN", "title": "Cask Night: Maple Porter", "desc": "One firkin, hand-pulled, gone when it's gone. Get in early.", "when": "Sat · 4:00 PM" },
+    { "day": "21", "month": "JUN", "title": "Patio Sessions: Habit & Holler", "desc": "Sunset set on the river patio. Bring a sweater.",      "when": "Sat · 7:00 PM" }
+  ]
+}

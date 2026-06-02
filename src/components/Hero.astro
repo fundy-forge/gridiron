@@ -1,82 +1,27 @@
 ---
+import { beers } from '../data/beers';
+const tapCount = beers.filter(b => b.onTap).length;
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-zinc-950">
-  <!-- Background texture overlay -->
-  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/40 via-zinc-950 to-zinc-950"></div>
-
-  <!-- Grain texture -->
-  <div
-    class="absolute inset-0 opacity-[0.03]"
-    style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E'); background-size: 256px;"
-  ></div>
-
-  <!-- Accent line -->
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-40 bg-gradient-to-b from-transparent via-amber-400/60 to-transparent"></div>
-
-  <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
-    <!-- Eyebrow -->
-    <p class="inline-flex items-center gap-3 text-amber-400 text-xs font-bold tracking-[0.3em] uppercase mb-8">
-      <span class="w-8 h-px bg-amber-400"></span>
-      Craft Brewery &amp; Taproom
-      <span class="w-8 h-px bg-amber-400"></span>
-    </p>
-
-    <!-- Headline -->
-    <h1 class="text-white font-black uppercase leading-none tracking-tight mb-6">
-      <span class="block text-6xl sm:text-8xl lg:text-[10rem]">Brewed</span>
-      <span class="block text-6xl sm:text-8xl lg:text-[10rem] text-stroke">Bold.</span>
-    </h1>
-
-    <!-- Subheadline -->
-    <p class="text-zinc-400 text-lg sm:text-xl max-w-xl mx-auto mb-12 leading-relaxed">
-      Small-batch ales and lagers forged with obsession. No shortcuts. No apologies.
-    </p>
-
-    <!-- CTAs -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a
-        href="#beers"
-        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-300 text-black font-bold tracking-widest uppercase px-8 py-4 text-sm transition-colors duration-200"
-      >
-        Explore Our Beers
-      </a>
-      <a
-        href="#taproom"
-        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/50 text-white font-bold tracking-widest uppercase px-8 py-4 text-sm transition-colors duration-200"
-      >
-        Find the Taproom
-      </a>
+<section class="hero grain" style="position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;z-index:0;">
+    <img src="/assets/photos/bar-chalkboard-menu.png" alt="" aria-hidden="true" fetchpriority="high"
+      style="width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.13;filter:grayscale(40%);" />
+  </div>
+  <div class="inner" style="position:relative;z-index:1;">
+    <img class="emblem-crest" src="/assets/logos/logo_white_transparent.png" alt="Gridiron Brewing — Hampton, New Brunswick" fetchpriority="high" />
+    <span class="kicker rule">Small-Batch Craft Beer · Hampton, NB</span>
+    <h1>Cold Pints,<br /><span class="rust">Cozy Place.</span></h1>
+    <p class="sub">Small-batch craft beer brewed in Hampton, New Brunswick — local ingredients, global inspiration, poured fresh on the shores of the Kennebecasis. Paddle in, hike down, or just pull up a chair.</p>
+    <div class="cta">
+      <a class="btn btn-amber" href="/beers">View the Tap List →</a>
+      <a class="btn btn-ghost" href="/visit">Visit the Taproom</a>
     </div>
-
-    <!-- Stats -->
-    <div class="mt-24 grid grid-cols-3 gap-8 border-t border-white/10 pt-12 max-w-lg mx-auto">
-      {[
-        { value: '24+', label: 'Rotating Taps' },
-        { value: '2018', label: 'Est.' },
-        { value: '100%', label: 'Independent' },
-      ].map(({ value, label }) => (
-        <div class="text-center">
-          <p class="text-white font-black text-3xl">{value}</p>
-          <p class="text-zinc-500 text-xs tracking-widest uppercase mt-1">{label}</p>
-        </div>
-      ))}
+    <div class="footstrip">
+      <span>Open <b>Tue–Sun</b></span>
+      <span><b>{tapCount}</b> Taps Flowing</span>
+      <span>Dog Friendly</span>
+      <span>Patio on the River</span>
     </div>
   </div>
-
-  <!-- Bottom fade -->
-  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-zinc-950 to-transparent"></div>
 </section>
-
-<style>
-  .text-stroke {
-    -webkit-text-stroke: 2px white;
-    color: transparent;
-  }
-
-  @media (max-width: 640px) {
-    .text-stroke {
-      -webkit-text-stroke: 1px white;
-    }
-  }
-</style>

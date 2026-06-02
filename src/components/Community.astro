@@ -1,0 +1,151 @@
+---
+const photos = [
+  { src: '/assets/photos/live-music-deck.png',      alt: 'Live music on the Gridiron deck'           },
+  { src: '/assets/photos/crowded-bar.png',           alt: 'Packed house at Gridiron'                  },
+  { src: '/assets/photos/card-game-beers.png',       alt: 'Friends playing cards with Gridiron beers' },
+  { src: '/assets/photos/beers-pumpkins.png',        alt: 'Fall beers at Gridiron'                    },
+  { src: '/assets/photos/rottweiler-trophy.png',     alt: 'Gridiron mascot with trophy'               },
+  { src: '/assets/photos/dog-sunflower-costume.png', alt: 'Dog in sunflower costume at Gridiron'      },
+];
+---
+
+<section class="band-dark">
+  <div class="section">
+    <div class="community-outer" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+
+      <!-- Text -->
+      <div>
+        <span class="kicker reveal" style="color:var(--amber-bright);">In The Community</span>
+        <h2 class="display reveal d1" style="font-size:clamp(34px,5vw,72px);color:var(--cream);margin:16px 0 22px;line-height:0.92;">
+          Drink Local.<br />Support Local.<br /><span style="color:var(--amber-bright);">Drink Gridiron.</span>
+        </h2>
+        <p class="reveal d1" style="max-width:480px;font-size:17px;line-height:1.65;color:rgba(250,243,228,.74);">From live music to trivia nights to everyday visits, you've made this more than a place to grab a drink — you've made it a place to belong. Dogs, kids, and good people welcome.</p>
+        <p class="reveal d2" style="margin-top:18px;">
+          <a href="https://www.instagram.com/gridironbrewing/" target="_blank" rel="noopener"
+            style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-bright);text-decoration:none;">
+            Tag us @gridironbrewing →
+          </a>
+        </p>
+      </div>
+
+      <!-- Photo mosaic -->
+      <div class="community-mosaic reveal d1">
+        {photos.map(p => (
+          <div class="mosaic-item" data-src={p.src} data-alt={p.alt}>
+            <img src={p.src} alt={p.alt} loading="lazy" decoding="async" />
+          </div>
+        ))}
+      </div>
+
+      <!-- Lightbox overlay (mobile tap) -->
+      <div id="community-lightbox" aria-hidden="true">
+        <img id="community-lightbox-img" src="" alt="" />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .community-mosaic {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 8px;
+    overflow: visible;
+  }
+
+  /* Force equal square cells */
+  .community-mosaic::before {
+    content: '';
+    width: 0;
+    padding-bottom: 100%;
+    grid-row: 1;
+    grid-column: 1;
+  }
+  .community-mosaic > *:first-child {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .mosaic-item {
+    aspect-ratio: 1;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    cursor: zoom-in;
+  }
+
+  .mosaic-item:hover {
+    overflow: visible;
+    z-index: 10;
+  }
+
+  .mosaic-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .mosaic-item:hover img {
+    filter: brightness(0.85);
+  }
+
+  /* Lightbox */
+  #community-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.88);
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  #community-lightbox.open {
+    display: flex;
+  }
+  #community-lightbox-img {
+    max-width: 92vw;
+    max-height: 86vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+  }
+
+  .mosaic-item { cursor: zoom-in; }
+</style>
+
+<script>
+  const items = document.querySelectorAll('.mosaic-item');
+  const lightbox = document.getElementById('community-lightbox');
+  const lightboxImg = document.getElementById('community-lightbox-img');
+
+  if (lightbox && lightboxImg) {
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const src = item.getAttribute('data-src') || '';
+        const alt = item.getAttribute('data-alt') || '';
+        lightboxImg.src = src;
+        lightboxImg.alt = alt;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+</script>

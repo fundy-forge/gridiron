@@ -1,8 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import OnTap from '../components/OnTap.astro';
+import Taproom from '../components/Taproom.astro';
+import Events from '../components/Events.astro';
+import Community from '../components/Community.astro';
+import InstagramFeed from '../components/InstagramFeed.astro';
 ---
 
-<Layout title="Gridiron Brewery">
+<Layout title="Gridiron Brewing Co. — Hampton, New Brunswick">
   <Hero />
+  <OnTap />
+  <Taproom />
+  <About />
+  <Events />
+
+  <InstagramFeed />
+  <Community />
 </Layout>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && reveals.length) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach((el) => io.observe(el));
+  } else {
+    reveals.forEach((el) => el.classList.add('in'));
+  }
+</script>

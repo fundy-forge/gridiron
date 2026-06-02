@@ -1,1 +1,285 @@
 @import "tailwindcss";
+
+/* ============================================================
+   GRIDIRON BREWING — design tokens & base styles
+   ============================================================ */
+:root {
+  --paper: #f1e6d0;
+  --paper-2: #e7d8ba;
+  --cream: #faf3e4;
+  --ink: #211711;
+  --ink-2: #3a2b1e;
+  --ink-3: #5a4733;
+  --amber: #c17a2b;
+  --amber-bright: #e0962f;
+  --rust: #8b3a2b;
+  --red: #d83a29;
+  --line: rgba(33, 23, 17, 0.16);
+  --maxw: 1280px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-behavior: smooth; }
+body { font-family: 'Archivo', sans-serif; color: var(--ink); background: var(--paper); line-height: 1.55; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+::selection { background: var(--amber); color: #1c130c; }
+
+/* ---------- type helpers ---------- */
+.display { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; line-height: .84; letter-spacing: .005em; }
+.mono { font-family: 'Space Mono', monospace; }
+.kicker { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--amber); }
+.kicker.rule { display: inline-flex; align-items: center; gap: 14px; color: var(--ink-2); }
+.kicker.rule::before { content: ""; width: 34px; height: 2px; background: var(--amber); }
+
+/* ---------- grain ---------- */
+.grain { position: relative; }
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .45;
+  mix-blend-mode: multiply;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+.grain > * { position: relative; z-index: 2; }
+
+/* ---------- buttons ---------- */
+.btn { display: inline-flex; align-items: center; gap: 10px; font-family: 'Space Mono', monospace; font-weight: 700; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; padding: 14px 22px; border-radius: 3px; text-decoration: none; cursor: pointer; border: 1.5px solid transparent; transition: transform .15s var(--ease), background .15s var(--ease), color .15s var(--ease); white-space: nowrap; }
+.btn:hover { transform: translateY(-2px); }
+.btn-amber { background: var(--amber); color: #1c130c; }
+.btn-amber:hover { background: var(--amber-bright); }
+.btn-ghost { background: transparent; border-color: currentColor; }
+.btn-ghost:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.btn-sm { padding: 10px 16px; }
+
+/* ---------- photo ---------- */
+.ph { position: relative; background: repeating-linear-gradient(45deg, rgba(33,23,17,.10) 0 2px, transparent 2px 13px); display: flex; align-items: center; justify-content: center; overflow: hidden; color: var(--ink-3); }
+.photo { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block; border: 1px solid var(--line); box-shadow: 0 20px 44px -28px rgba(0,0,0,.55); }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header { position: sticky; top: 0; z-index: 50; transition: background .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease); border-bottom: 1px solid transparent; }
+.site-header.scrolled { background: rgba(241,230,208,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); box-shadow: 0 6px 20px -16px rgba(0,0,0,.5); }
+.nav-inner { max-width: var(--maxw); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+.brand img.emblem { height: 56px; width: auto; flex: none; mix-blend-mode: multiply; }
+.brand .wordmark { height: 48px; width: auto; mix-blend-mode: multiply; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { font-family: 'Space Mono', monospace; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; color: var(--ink-2); transition: color .15s; }
+.nav-links a:hover { color: var(--amber); }
+.nav-cta { display: flex; align-items: center; gap: 18px; }
+.menu-btn { display: none; background: none; border: none; cursor: pointer; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer { background: var(--ink); color: var(--cream); padding: 64px 32px 32px; }
+.foot-inner { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+.site-footer .brand { color: var(--cream); margin-bottom: 18px; }
+.site-footer .footlogo { height: 140px; width: auto; margin-bottom: 20px; }
+.foot-blurb { font-size: 14px; color: rgba(250,243,228,.6); max-width: 280px; line-height: 1.6; }
+.foot-col h4 { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--amber-bright); margin-bottom: 16px; }
+.foot-col a, .foot-col p { display: block; font-size: 14px; color: rgba(250,243,228,.78); text-decoration: none; margin-bottom: 9px; line-height: 1.5; }
+.foot-col a:hover { color: var(--amber-bright); }
+.foot-bottom { max-width: var(--maxw); margin: 48px auto 0; padding-top: 22px; border-top: 1px solid rgba(250,243,228,.14); display: flex; justify-content: space-between; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(250,243,228,.5); }
+
+/* ============================================================
+   SECTIONS / LAYOUT
+   ============================================================ */
+.section { max-width: var(--maxw); margin: 0 auto; padding: 96px 32px; }
+.section-head { margin-bottom: 48px; }
+.section-head h2 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; line-height: .86; letter-spacing: .005em; font-size: clamp(40px, 5.4vw, 76px); margin: 12px 0 0; }
+.section-head .lead { max-width: 560px; font-size: 17px; color: var(--ink-2); margin-top: 18px; line-height: 1.6; }
+.band-dark { background: var(--ink); color: var(--cream); }
+.band-dark .section-head h2 { color: var(--cream); }
+.band-dark .kicker { color: var(--amber-bright); }
+.band-amber { background: var(--amber); color: #1c130c; }
+
+/* ---------- reveal ---------- */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+.reveal.d1 { transition-delay: .08s; }
+.reveal.d2 { transition-delay: .16s; }
+.reveal.d3 { transition-delay: .24s; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero { background: var(--paper); text-align: center; overflow: hidden; }
+.hero .inner { max-width: 1000px; margin: 0 auto; padding: 12px 32px 48px; display: flex; flex-direction: column; align-items: center; }
+.hero h1 { font-family: 'Anton', sans-serif; font-weight: 400; font-size: clamp(48px, 7vw, 104px); line-height: .9; text-transform: uppercase; margin-top: 6px; }
+.hero h1 .rust { color: var(--red); }
+.hero .emblem-crest { height: clamp(380px, 55vw, 520px); width: auto; margin: 0 0 8px; transform: scale(1.35); filter: brightness(0) sepia(1) saturate(4) hue-rotate(8deg) brightness(0.78); }
+.hero .sub { max-width: 560px; font-size: 18px; line-height: 1.6; color: var(--ink-2); margin: 24px 0 32px; }
+.hero .cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.hero .footstrip { margin-top: 52px; display: flex; gap: 14px 40px; flex-wrap: wrap; justify-content: center; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-2); }
+.hero .footstrip b { color: var(--amber); }
+.hero .footstrip span { display: inline-flex; align-items: center; gap: 8px; }
+
+/* ============================================================
+   BEER CARDS
+   ============================================================ */
+.beer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+.beer-card { background: var(--cream); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; height: 100%; transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
+.beer-card:hover { transform: translateY(-5px); box-shadow: 0 22px 40px -26px rgba(0,0,0,.5); }
+.beer-can { height: 230px; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--line); }
+.beer-can .can { width: 96px; height: 178px; border-radius: 11px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 14px; border: 1px solid rgba(33,23,17,.25); position: relative; overflow: hidden; }
+.beer-can .can .cn { font-family: 'Anton', sans-serif; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; text-align: center; line-height: .9; padding: 0 6px; color: #1c130c; mix-blend-mode: multiply; }
+.beer-can .can::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 30px; background: rgba(0,0,0,.12); }
+.beer-info { padding: 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.beer-info .style { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
+.beer-info h3 { font-family: 'Anton', sans-serif; font-weight: 400; font-size: 26px; text-transform: uppercase; letter-spacing: .01em; line-height: .92; color: var(--ink); }
+.beer-info .desc { font-size: 14px; color: var(--ink-2); line-height: 1.5; margin: 2px 0 4px; }
+.beer-specs { margin-top: auto; display: flex; gap: 18px; padding-top: 12px; border-top: 1px dashed var(--line); font-family: 'Space Mono', monospace; font-size: 12px; }
+.beer-specs .s { display: flex; flex-direction: column; gap: 1px; }
+.beer-specs .s span { font-size: 9px; letter-spacing: .14em; color: var(--ink-3); }
+.beer-specs .s b { color: var(--rust); font-size: 14px; }
+.beer-specs .tag { margin-left: auto; align-self: flex-start; font-size: 9px; letter-spacing: .12em; background: var(--amber); color: #1c130c; padding: 3px 7px; border-radius: 2px; }
+.beer-specs .tag.seasonal { background: var(--rust); color: var(--cream); }
+.beer-specs .tag.guest { background: #2a5c8a; color: #d4eaf7; }
+.beer-specs .tag-stack { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.beer-specs .tag-stack .tag { margin-left: 0; }
+.beer-specs .tag.ontap-tag { background: #2a6e3f; color: #d4f0df; }
+.beer-specs .tag.ask-us { background: rgba(33,23,17,.12); color: var(--ink-3); }
+.beer-card.off-tap { opacity: 0.6; }
+.beer-card.off-tap .beer-can { filter: grayscale(40%); }
+.beer-card.hidden { display: none; }
+.no-results { display: none; text-align: center; padding: 60px 0; font-family: 'Space Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+
+/* ============================================================
+   EVENTS
+   ============================================================ */
+.event-list { display: flex; flex-direction: column; }
+.event-row { display: grid; grid-template-columns: 120px 1fr auto; gap: 28px; align-items: center; padding: 26px 0; border-top: 1px solid var(--line); transition: padding-left .2s var(--ease); }
+.event-row:last-child { border-bottom: 1px solid var(--line); }
+.event-row:hover { padding-left: 12px; }
+.event-date { font-family: 'Anton', sans-serif; text-transform: uppercase; line-height: .85; }
+.event-date .d { font-size: 42px; display: block; }
+.event-date .m { font-size: 16px; color: var(--amber); letter-spacing: .04em; display: block; }
+.event-body h4 { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 22px; margin-bottom: 4px; }
+.event-body p { font-size: 14px; color: var(--ink-2); }
+.event-meta { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); text-align: right; }
+.event-meta .free { color: var(--rust); font-weight: 700; }
+
+/* ============================================================
+   STORY SPLIT
+   ============================================================ */
+.split2 { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.split2 .ph { aspect-ratio: 4/5; border-radius: 6px; }
+.story-body p { font-size: 17px; line-height: 1.7; color: var(--ink-2); margin-bottom: 18px; }
+.story-stats { display: flex; gap: 36px; margin-top: 28px; }
+.story-stats .st b { font-family: 'Anton', sans-serif; font-size: 44px; color: var(--rust); display: block; line-height: 1; }
+.story-stats .st span { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+
+/* ============================================================
+   PAGE HERO (sub pages)
+   ============================================================ */
+.page-hero { background: var(--ink); color: var(--cream); text-align: center; padding: 80px 32px 72px; }
+.page-hero .kicker { color: var(--amber-bright); }
+.page-hero h1 { font-family: 'Anton', sans-serif; font-weight: 400; font-size: clamp(52px, 8vw, 108px); text-transform: uppercase; line-height: .84; margin: 14px 0 18px; }
+.page-hero p { max-width: 560px; margin: 0 auto; font-size: 17px; color: rgba(250,243,228,.72); line-height: 1.6; }
+
+/* ============================================================
+   HOURS TABLE
+   ============================================================ */
+.hours-table { width: 100%; border-collapse: collapse; font-family: 'Archivo', sans-serif; }
+.hours-table tr { border-bottom: 1px solid rgba(250,243,228,.12); }
+.hours-table td { padding: 18px 0; font-size: 16px; color: rgba(250,243,228,.75); }
+.hours-table td:first-child { font-weight: 600; color: rgba(250,243,228,.95); width: 48%; }
+.hours-table td:last-child { text-align: right; color: var(--amber-bright); font-size: 16px; }
+.hours-table tr.today { background: rgba(193,122,43,0.08); }
+.hours-table tr.today td { color: var(--cream); }
+.hours-table tr.today td:first-child { color: var(--amber-bright); font-weight: 700; }
+.hours-table tr.today td:first-child::before { content: "▸ "; }
+.hours-table .closed { color: rgba(250,243,228,.35) !important; font-weight: 400; }
+
+/* ============================================================
+   TAP LIST FILTER
+   ============================================================ */
+.tap-controls { position: sticky; top: 67px; z-index: 30; background: rgba(241,230,208,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.tap-controls .inner { max-width: var(--maxw); margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; }
+.filter-group { display: flex; align-items: center; gap: 10px; }
+.filter-group > span { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; padding: 7px 13px; border-radius: 20px; border: 1.5px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; transition: all .15s var(--ease); }
+.chip:hover { border-color: var(--amber); color: var(--ink); }
+.chip.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.tap-count { margin-left: auto; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.tap-count b { color: var(--rust); }
+
+/* ============================================================
+   DRINKS LIST
+   ============================================================ */
+.drinks-list { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.drink-row { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--line); gap: 20px; }
+.drink-row h4 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 17px; color: var(--ink); margin-bottom: 3px; }
+.drink-row p { font-size: 14px; color: var(--ink-3); line-height: 1.5; }
+.drink-price { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--ink-2); white-space: nowrap; text-align: right; }
+.drink-price span { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1080px) {
+  .beer-grid { grid-template-columns: repeat(2, 1fr); }
+  .foot-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 820px) {
+  .instagram-grid { grid-template-columns: 1fr !important; }
+  .nav-links { display: none; }
+  .menu-btn { display: block; }
+  .nav-links.open { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--paper); padding: 20px 32px; gap: 18px; border-bottom: 1px solid var(--line); box-shadow: 0 12px 24px -16px rgba(0,0,0,.5); }
+  .section { padding: 64px 24px; }
+  .beer-grid { grid-template-columns: repeat(2, 1fr); }
+  .split2 { grid-template-columns: 1fr; gap: 32px; }
+  .event-row { grid-template-columns: 64px 1fr; gap: 18px; }
+  .event-meta { grid-column: 2; text-align: left; }
+  .event-date .d { font-size: 32px; }
+
+  /* Stack all two-column grids */
+  .community-outer,
+  .taproom-grid,
+  .visit-hours-grid,
+  .visit-directions-grid,
+  .visit-private-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+
+  /* Food trucks: 1 column on mobile */
+  .visit-food-grid { grid-template-columns: 1fr !important; }
+
+  /* Community mosaic: 2 columns on mobile */
+  .community-mosaic { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Taproom images: hide second image on mobile to save space */
+  .taproom-grid .reveal.d1 img:last-child { display: none; }
+
+  /* Hero footstrip wraps more gracefully */
+  .hero .footstrip { gap: 10px 24px; }
+
+  /* Page hero smaller on mobile */
+  .page-hero { padding: 56px 24px 48px; }
+
+  /* Drinks section full width */
+  .drinks-list .drink-row { flex-wrap: wrap; gap: 8px; }
+  .drink-price { text-align: left; }
+
+  /* Beer card style label — fits on one line */
+  .beer-info .style { font-size: 11px; letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* Wrap specs so badges drop to own line */
+  .beer-specs { flex-wrap: wrap; gap: 10px; }
+  .beer-specs .tag-stack { margin-left: 0; width: 100%; flex-direction: row; justify-content: flex-start; gap: 6px; }
+
+  /* Hide filter bar on mobile */
+  .tap-controls { display: none; }
+}
+@media (max-width: 520px) {
+  .beer-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .foot-inner { grid-template-columns: 1fr; gap: 28px; }
+  .hero .inner { padding-bottom: 60px; }
+}

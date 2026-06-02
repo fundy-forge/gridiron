@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gridiron Brewing — Hero Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f1e6d0;
+    --paper-2:#e7d8ba;
+    --cream:#faf3e4;
+    --ink:#211711;
+    --ink-2:#3a2b1e;
+    --amber:#c17a2b;
+    --amber-bright:#e0962f;
+    --rust:#8b3a2b;
+    --line:rgba(33,23,17,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{ -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;}
+  body{
+    background:#cfc6b6;
+    font-family:'Archivo',sans-serif;
+    color:var(--ink);
+    padding:48px 40px 120px;
+  }
+  /* ---------- exploration page chrome ---------- */
+  .page-head{max-width:1440px;margin:0 auto 40px;}
+  .page-head .kick{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);}
+  .page-head h1{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(36px,5vw,64px);line-height:.95;letter-spacing:.01em;margin:10px 0 14px;text-transform:uppercase;}
+  .page-head p{max-width:640px;font-size:16px;line-height:1.55;color:var(--ink-2);}
+
+  .frame-label{max-width:1440px;margin:56px auto 14px;display:flex;align-items:baseline;gap:14px;}
+  .frame-label .n{font-family:'Space Mono',monospace;font-weight:700;font-size:13px;letter-spacing:.15em;background:var(--ink);color:var(--cream);padding:4px 9px;border-radius:2px;}
+  .frame-label .t{font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;}
+  .frame-label .d{font-size:14px;color:var(--ink-2);}
+  .frame{max-width:1440px;margin:0 auto;border-radius:8px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.45),0 4px 14px rgba(0,0,0,.15);}
+
+  /* ---------- design system card ---------- */
+  .ds{max-width:1440px;margin:0 auto;background:var(--cream);border-radius:8px;padding:36px 40px;box-shadow:0 20px 50px -28px rgba(0,0,0,.4);display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:40px;}
+  .ds h3{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;}
+  .logo-lockup{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+  .mark{width:52px;height:52px;flex:none;}
+  .wordmark{font-family:'Anton',sans-serif;font-size:30px;line-height:.86;text-transform:uppercase;letter-spacing:.01em;}
+  .wordmark small{display:block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.32em;color:var(--ink-2);margin-top:4px;}
+  .swatches{display:flex;gap:0;border-radius:5px;overflow:hidden;border:1px solid var(--line);}
+  .sw{flex:1;height:64px;display:flex;align-items:flex-end;padding:6px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.04em;}
+  .specimen .big{font-family:'Anton',sans-serif;font-size:46px;line-height:.9;text-transform:uppercase;}
+  .specimen .mid{font-family:'Archivo',sans-serif;font-weight:800;font-size:17px;margin-top:12px;}
+  .specimen .mono{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.05em;margin-top:8px;color:var(--ink-2);}
+  .specimen .lbl{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-top:4px;}
+
+  /* ====================================================== */
+  /* shared hero internals                                  */
+  /* ====================================================== */
+  .grain{position:relative;}
+  .grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 44px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;position:relative;z-index:3;}
+  .nav .links{display:flex;gap:30px;}
+  .nav a{color:inherit;text-decoration:none;opacity:.85;}
+  .nav a:hover{opacity:1;}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:14px 22px;border-radius:3px;text-decoration:none;cursor:pointer;border:1.5px solid transparent;transition:transform .15s ease, background .15s ease, color .15s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-amber{background:var(--amber);color:#1c130c;}
+  .btn-amber:hover{background:var(--amber-bright);}
+  .btn-ghost{background:transparent;border-color:currentColor;}
+  .btn-ghost:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);}
+
+  /* placeholder utility */
+  .ph{position:relative;background:repeating-linear-gradient(45deg,rgba(0,0,0,.10) 0 2px,transparent 2px 13px);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .ph .pl{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.7;padding:6px 10px;border:1px dashed currentColor;border-radius:3px;}
+
+  /* ---------- A: vintage label ---------- */
+  .heroA{background:var(--paper);color:var(--ink);}
+  .heroA .body{padding:30px 44px 64px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:2;}
+  .heroA .crest{margin:14px 0 26px;}
+  .heroA .rule{display:flex;align-items:center;gap:16px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-2);margin-bottom:8px;}
+  .heroA .rule::before,.heroA .rule::after{content:"";height:1px;width:60px;background:var(--ink);opacity:.4;}
+  .heroA h2{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(58px,8.6vw,128px);line-height:.84;text-transform:uppercase;letter-spacing:.005em;}
+  .heroA h2 .amber{color:var(--rust);}
+  .heroA .sub{max-width:540px;font-size:17px;line-height:1.6;color:var(--ink-2);margin:22px 0 30px;}
+  .heroA .cta{display:flex;gap:14px;}
+  .heroA .footstrip{margin-top:46px;display:flex;gap:40px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);}
+  .heroA .footstrip b{color:var(--amber);}
+
+  /* ---------- B: industrial forge ---------- */
+  .heroB{background:var(--ink);color:var(--cream);}
+  .heroB .nav{border-bottom:1px solid rgba(250,243,228,.14);}
+  .heroB .split{display:grid;grid-template-columns:1.15fr .85fr;align-items:stretch;position:relative;z-index:2;}
+  .heroB .left{padding:60px 44px 54px;display:flex;flex-direction:column;justify-content:center;}
+  .heroB .eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber-bright);display:flex;align-items:center;gap:12px;margin-bottom:22px;}
+  .heroB .eyebrow::before{content:"";width:34px;height:2px;background:var(--amber-bright);}
+  .heroB h2{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(60px,8vw,116px);line-height:.82;text-transform:uppercase;}
+  .heroB h2 em{font-style:normal;color:var(--amber-bright);-webkit-text-stroke:0;}
+  .heroB .sub{max-width:430px;font-size:16px;line-height:1.6;color:rgba(250,243,228,.72);margin:24px 0 30px;}
+  .heroB .cta{display:flex;gap:14px;}
+  .heroB .right{position:relative;border-left:1px solid rgba(250,243,228,.14);background:linear-gradient(160deg,#2c1f15,#170f0a);display:flex;align-items:center;justify-content:center;padding:40px;}
+  .heroB .can{width:188px;height:380px;border-radius:14px;color:var(--amber-bright);background:repeating-linear-gradient(45deg,rgba(224,150,47,.16) 0 2px,transparent 2px 13px);border:1px solid rgba(224,150,47,.4);display:flex;align-items:center;justify-content:center;}
+  .heroB .ticket{position:absolute;right:34px;bottom:34px;background:var(--cream);color:var(--ink);padding:14px 16px;border-radius:4px;font-family:'Space Mono',monospace;box-shadow:0 14px 30px rgba(0,0,0,.4);transform:rotate(3deg);}
+  .heroB .ticket .row{display:flex;justify-content:space-between;gap:26px;font-size:12px;padding:3px 0;}
+  .heroB .ticket .row b{color:var(--rust);}
+  .heroB .ticket .hd{font-weight:700;font-size:11px;letter-spacing:.16em;border-bottom:1px dashed rgba(33,23,17,.4);padding-bottom:6px;margin-bottom:4px;}
+  .heroB .marquee{border-top:1px solid rgba(250,243,228,.14);padding:14px 44px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,243,228,.5);white-space:nowrap;overflow:hidden;position:relative;z-index:2;}
+  .heroB .marquee b{color:var(--amber-bright);}
+
+  /* ---------- C: editorial poster ---------- */
+  .heroC{background:var(--cream);color:var(--ink);}
+  .heroC .split{display:grid;grid-template-columns:1fr 1fr;position:relative;z-index:2;min-height:560px;}
+  .heroC .left{background:var(--amber);color:#1c130c;padding:48px 44px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
+  .heroC .idx{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;}
+  .heroC h2{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(72px,11vw,168px);line-height:.78;text-transform:uppercase;letter-spacing:-.01em;}
+  .heroC h2 .out{color:transparent;-webkit-text-stroke:2px #1c130c;}
+  .heroC .left .meta{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;line-height:1.7;max-width:340px;}
+  .heroC .right{position:relative;display:flex;align-items:center;justify-content:center;color:var(--ink);}
+  .heroC .right .ph{position:absolute;inset:26px;border-radius:4px;color:var(--ink-2);}
+  .heroC .stamp{position:absolute;left:-46px;top:60px;z-index:4;width:128px;height:128px;border-radius:50%;background:var(--rust);color:var(--cream);display:flex;align-items:center;justify-content:center;text-align:center;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;line-height:1.4;box-shadow:0 12px 28px rgba(0,0,0,.3);transform:rotate(-8deg);}
+  .heroC .cbar{display:flex;align-items:center;justify-content:space-between;padding:16px 44px;background:var(--ink);color:var(--cream);font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;position:relative;z-index:2;}
+</style>
+</head>
+<body>
+
+  <header class="page-head">
+    <div class="kick">Gridiron Brewing Co. — Hampton, New Brunswick · Internal Design Review</div>
+    <h1>Three Hero Directions</h1>
+    <p>A shared rustic-heritage system — warm ambers, espresso brown, cream paper, bold condensed display type — applied three ways. Skim the directions below and tell me which one (or which mix) to carry through the full site. Everything here is a draft; the palette and type are the constant.</p>
+  </header>
+
+  <!-- DESIGN SYSTEM -->
+  <section class="ds">
+    <div>
+      <h3>Identity</h3>
+      <div class="logo-lockup">
+        <svg class="mark" viewBox="0 0 52 52" fill="none" stroke="#211711" stroke-width="2.4">
+          <rect x="3" y="3" width="46" height="46" rx="4"/>
+          <path d="M3 18.5H49 M3 33.5H49 M18.5 3V49 M33.5 3V49"/>
+        </svg>
+        <div class="wordmark">Gridiron<small>Brewing Co.</small></div>
+      </div>
+      <p style="font-size:14px;line-height:1.55;color:var(--ink-2);">The mark is a forge grid — an iron grate cropped to a badge. It scales from a can lid to a building sign. Built from straight rules only, no illustration.</p>
+    </div>
+    <div>
+      <h3>Palette</h3>
+      <div class="swatches">
+        <div class="sw" style="background:#faf3e4;color:#211711;">Cream</div>
+        <div class="sw" style="background:#f1e6d0;color:#211711;">Paper</div>
+        <div class="sw" style="background:#c17a2b;color:#1c130c;">Amber</div>
+        <div class="sw" style="background:#8b3a2b;color:#faf3e4;">Rust</div>
+        <div class="sw" style="background:#211711;color:#faf3e4;">Espresso</div>
+      </div>
+      <p style="font-size:14px;line-height:1.55;color:var(--ink-2);margin-top:16px;">Warm throughout. Amber is the only bright; rust and espresso carry weight. Cream and paper are the canvases — never pure white.</p>
+    </div>
+    <div class="specimen">
+      <h3>Type</h3>
+      <div class="big">Cold-Forged</div>
+      <div class="mid">Archivo — bold modern sans for everything readable</div>
+      <div class="mono">SPACE MONO · ABV 6.2% · IBU 44 · spec tickets &amp; labels</div>
+      <div class="lbl">Anton display · Archivo body · Space Mono detail</div>
+    </div>
+  </section>
+
+  <!-- ================= DIRECTION A ================= -->
+  <div class="frame-label">
+    <span class="n">A</span><span class="t">The Vintage Label</span>
+    <span class="d">Centered, symmetrical, paper-and-badge. Classic taproom warmth — feels like an old bottle label.</span>
+  </div>
+  <div class="frame">
+    <section class="heroA grain">
+      <nav class="nav">
+        <span>Est. 2014</span>
+        <div class="links"><a href="#">Beers</a><a href="#">Taproom</a><a href="#">Events</a><a href="#">Story</a></div>
+        <span>Hampton, NB</span>
+      </nav>
+      <div class="body">
+        <svg class="crest" width="118" height="118" viewBox="0 0 118 118">
+          <defs><path id="arcA" d="M59,59 m-43,0 a43,43 0 1,1 86,0" fill="none"/><path id="arcB" d="M59,59 m43,0 a43,43 0 1,1 -86,0" fill="none"/></defs>
+          <circle cx="59" cy="59" r="56" fill="none" stroke="#211711" stroke-width="1.5"/>
+          <circle cx="59" cy="59" r="50" fill="none" stroke="#c17a2b" stroke-width="3"/>
+          <text font-family="Space Mono, monospace" font-size="10" letter-spacing="4" fill="#211711"><textPath href="#arcA" startOffset="6%">GRIDIRON BREWING CO.</textPath></text>
+          <text font-family="Space Mono, monospace" font-size="9" letter-spacing="5" fill="#8b3a2b"><textPath href="#arcB" startOffset="14%">HAMPTON · NEW BRUNSWICK</textPath></text>
+          <g stroke="#211711" stroke-width="2.2" fill="none"><rect x="42" y="42" width="34" height="34" rx="3"/><path d="M42 53.3H76 M42 64.6H76 M53.3 42V76 M64.6 42V76"/></g>
+        </svg>
+        <div class="rule">Small-batch ales since 2014</div>
+        <h2>Cold-Forged<br>In The <span class="amber">Valley</span></h2>
+        <p class="sub">Brewed slow and stubborn on the banks of the Kennebecasis. Five flagships, a rotating cast of seasonals, and a taproom that smells like roasted malt and good decisions.</p>
+        <div class="cta">
+          <a class="btn btn-amber" href="#">View the Tap List →</a>
+          <a class="btn btn-ghost" href="#">Visit the Taproom</a>
+        </div>
+        <div class="footstrip"><span>Open Wed–Sun</span><span><b>12</b> Taps Flowing</span><span>Dog Friendly</span></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= DIRECTION B ================= -->
+  <div class="frame-label">
+    <span class="n">B</span><span class="t">The Industrial Forge</span>
+    <span class="d">Dark split layout, amber accents, a hero can with a spec ticket. Moody, modern, hophead-focused.</span>
+  </div>
+  <div class="frame">
+    <section class="heroB grain">
+      <nav class="nav">
+        <span style="font-family:'Anton';font-size:18px;letter-spacing:.02em;">GRIDIRON</span>
+        <div class="links"><a href="#">Beers</a><a href="#">Taproom</a><a href="#">Events</a><a href="#">Story</a></div>
+        <a href="#" style="color:var(--amber-bright);">Find Us →</a>
+      </nav>
+      <div class="split">
+        <div class="left">
+          <div class="eyebrow">Kennebecasis Valley · Est. 2014</div>
+          <h2>Brewed<br>By <em>Fire</em><br>&amp; Patience</h2>
+          <p class="sub">Hard water, local grain, and a stubborn refusal to rush. Gridiron is a working brewery and taproom in Hampton, New Brunswick — pour-forward, hop-honest, open late.</p>
+          <div class="cta">
+            <a class="btn btn-amber" href="#">See What's On Tap →</a>
+            <a class="btn btn-ghost" style="color:var(--cream);" href="#">Plan a Visit</a>
+          </div>
+        </div>
+        <div class="right ph" style="color:#5a4733;">
+          <div class="can"><span class="pl" style="opacity:.9;">Can Art</span></div>
+          <div class="ticket">
+            <div class="row hd"><span>FORGE IPA</span><span>★</span></div>
+            <div class="row"><span>ABV</span><b>6.8%</b></div>
+            <div class="row"><span>IBU</span><b>62</b></div>
+            <div class="row"><span>STYLE</span><b>West Coast</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="marquee">Forge IPA <b>·</b> Anvil Amber <b>·</b> Valley Lager <b>·</b> Kennebecasis Stout <b>·</b> Hampton Hazy <b>·</b> Grist Saison <b>·</b> Forge IPA <b>·</b> Anvil Amber <b>·</b> Valley Lager</div>
+    </section>
+  </div>
+
+  <!-- ================= DIRECTION C ================= -->
+  <div class="frame-label">
+    <span class="n">C</span><span class="t">The Editorial Poster</span>
+    <span class="d">Oversized type, amber block, overlapping stamp. Confident and design-forward — stands out from every other brewery site.</span>
+  </div>
+  <div class="frame">
+    <section class="heroC grain">
+      <nav class="nav" style="border-bottom:1px solid var(--line);">
+        <span style="font-family:'Anton';font-size:18px;">GRIDIRON</span>
+        <div class="links"><a href="#">Beers</a><a href="#">Taproom</a><a href="#">Events</a><a href="#">Story</a></div>
+        <span>Hampton, NB</span>
+      </nav>
+      <div class="split">
+        <div class="left">
+          <div class="idx">№ 01 — The Flagship Pour</div>
+          <h2>Cold<br><span class="out">Forged</span><br>Ales</h2>
+          <div class="meta">A small-batch brewery &amp; taproom forged in Hampton, New Brunswick. Twelve taps, live music on the weekends, and a patio over the Kennebecasis.</div>
+        </div>
+        <div class="right">
+          <div class="stamp">Est.<br>2014<br>★ NB ★</div>
+          <div class="ph"><span class="pl">Taproom Photo</span></div>
+        </div>
+      </div>
+      <div class="cbar">
+        <span>Open Wed–Sun · 12pm–Late</span>
+        <a href="#" class="btn btn-amber" style="padding:10px 18px;">Pull Up a Stool →</a>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

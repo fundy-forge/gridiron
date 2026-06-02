@@ -1,0 +1,134 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/assets/photos
+public_folder: /assets/photos
+
+site_url: https://gridironbrewing.ca
+display_url: https://gridironbrewing.ca
+
+collections:
+
+  # ── ON TAP / BEER LIST ──────────────────────────────────
+  - name: tap-list
+    label: "🍺 Beer List"
+    files:
+      - name: beers
+        label: Beers
+        file: src/data/beers.json
+        fields:
+          - label: Beers
+            name: beers
+            widget: list
+            label_singular: Beer
+            summary: "{{fields.name}} ({{fields.style}}) — On Tap: {{fields.onTap}}"
+            fields:
+              - label: "Beer Name"
+                name: name
+                widget: string
+                hint: "Full name, e.g. Gridiron Light"
+
+              - label: "On Tap ✓"
+                name: onTap
+                widget: boolean
+                default: false
+                hint: "Turn on when this beer is currently flowing."
+
+              - label: "Style"
+                name: style
+                widget: string
+                hint: "e.g. Pale Ale, West Coast IPA, Brown Ale"
+
+              - label: "Tasting Notes"
+                name: desc
+                widget: text
+                hint: "Short description shown on the beer card."
+
+              - label: "ABV (%)"
+                name: abv
+                widget: number
+                value_type: float
+                step: 0.1
+                min: 0
+                max: 20
+
+              - label: "IBU"
+                name: ibu
+                widget: number
+                min: 0
+                max: 120
+
+              - label: "Type"
+                name: tag
+                widget: select
+                options:
+                  - { label: "Flagship (always on menu)",          value: "flagship" }
+                  - { label: "Seasonal (rotating)",                 value: "seasonal" }
+                  - { label: "Guest (another brewery's keg)",       value: "guest"    }
+                  - { label: "Hidden (keep in data, not on site)",  value: "hidden"   }
+
+              - label: "Style Category (for filters)"
+                name: styleCat
+                widget: select
+                options:
+                  - { label: "Lager / Wheat", value: "lager"  }
+                  - { label: "Amber & Pale",  value: "amber"  }
+                  - { label: "IPA",           value: "ipa"    }
+                  - { label: "Dark",          value: "dark"   }
+
+              - label: "Can Colour"
+                name: canColor
+                widget: color
+                hint: "Colour used for the placeholder can graphic."
+                default: "#c17a2b"
+
+              - label: "Can Label — Line 1"
+                name: canLabel
+                widget: list
+                max: 2
+                hint: "Two short lines of text on the can, e.g. ['Gridiron', 'Light']"
+
+              - label: "Light Text on Can?"
+                name: lightText
+                widget: boolean
+                default: false
+                hint: "Turn on if the can is very dark and needs white text."
+
+  # ── EVENTS ──────────────────────────────────────────────
+  - name: events
+    label: "📅 Events"
+    files:
+      - name: events
+        label: Upcoming Events
+        file: src/data/events.json
+        fields:
+          - label: Events
+            name: events
+            widget: list
+            label_singular: Event
+            summary: "{{fields.day}} {{fields.month}} — {{fields.title}}"
+            fields:
+              - label: "Day"
+                name: day
+                widget: string
+                hint: "Two digit day number, e.g. 06, 14, 21"
+
+              - label: "Month"
+                name: month
+                widget: string
+                hint: "Three letter month abbreviation, e.g. JUN, JUL, AUG"
+
+              - label: "Event Name"
+                name: title
+                widget: string
+
+              - label: "Description"
+                name: desc
+                widget: text
+                hint: "One or two sentences about the event."
+
+              - label: "Day & Time"
+                name: when
+                widget: string
+                hint: "e.g. Fri · 8:00 PM or Sat · 4:00 PM"

@@ -1,25 +1,59 @@
 ---
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title?: string;
+  activeNav?: string;
 }
 
-const { title = 'Gridiron Brewery' } = Astro.props;
+const { title = 'Gridiron Brewing Co. — Hampton, New Brunswick', activeNav } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/assets/logos/logo.png" />
+    <link rel="apple-touch-icon" href="/assets/logos/logo.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Gridiron Brewing Co. — Small-batch craft beer brewed in Hampton, New Brunswick. Taproom on the Kennebecasis. Cold pints, cozy place." />
     <title>{title}</title>
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Gridiron Brewing Co." />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="Small-batch craft beer brewed in Hampton, New Brunswick. Cold pints, cozy place." />
+    <meta property="og:image" content="/assets/logos/logo.png" />
+    <meta property="og:url" content="https://gridironbrewing.ca" />
+    <!-- Twitter/X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content="Small-batch craft beer brewed in Hampton, New Brunswick. Cold pints, cozy place." />
+    <meta name="twitter:image" content="/assets/logos/logo.png" />
+    <!-- Theme colour for mobile browsers -->
+    <meta name="theme-color" content="#c17a2b" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=Space+Mono:wght@400;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" /></noscript>
   </head>
-  <body class="bg-zinc-950 antialiased">
-    <Navbar />
+  <body>
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+    <Navbar activeNav={activeNav} />
     <slot />
+    <Footer />
   </body>
 </html>

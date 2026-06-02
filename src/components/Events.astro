@@ -1,0 +1,29 @@
+---
+import eventsData from '../data/events.json';
+const events = eventsData.events;
+---
+
+<section class="section" id="events">
+  <div class="section-head">
+    <span class="kicker reveal">Live At Gridiron</span>
+    <h2 class="reveal d1">Events &amp; Music</h2>
+    <p class="lead reveal d1">Something on most nights we're open. Live music every weekend, trivia midweek, and the occasional cask night. Always free to get in.</p>
+  </div>
+  <div class="event-list">
+    {events.map((ev, i) => (
+      <div class={`event-row reveal${i > 0 ? ` d${Math.min(i, 3)}` : ''}`}>
+        <div class="event-date">
+          <span class="d">{ev.day}</span>
+          <span class="m">{ev.month}</span>
+        </div>
+        <div class="event-body">
+          <h4>{ev.title}</h4>
+          <p>{ev.desc}</p>
+        </div>
+        <div class="event-meta">
+          {ev.when}<br /><span class="free">Free Entry</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

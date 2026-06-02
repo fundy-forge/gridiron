@@ -1,0 +1,233 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { beers as allBeers } from '../data/beers';
+
+// Filter out hidden beers, On Tap first
+const beers = [...allBeers]
+  .filter(b => b.tag !== 'hidden')
+  .sort((a, b) => Number(b.onTap) - Number(a.onTap));
+---
+
+<Layout title="The Pour List — Gridiron Brewing Co." activeNav="Drinks">
+  <section class="page-hero grain">
+    <span class="kicker">What We're Pouring · Hampton, NB</span>
+    <h1>The Pour List</h1>
+    <p>{allBeers.filter(b => b.onTap && b.tag !== 'hidden').length} beers on tap right now — six flagships that never leave, plus a rotating cast of seasonals. Wine, cider, cocktails, and non-alcoholic options also available.</p>
+  </section>
+
+  <div class="tap-controls">
+    <div class="inner">
+      <div class="filter-group">
+        <span>Availability</span>
+        <div class="chips">
+          <button class="chip active" data-filter="ontap" data-value="all">All</button>
+          <button class="chip" data-filter="ontap" data-value="true">On Tap</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <span>Style</span>
+        <div class="chips">
+          <button class="chip active" data-filter="style" data-value="all">All</button>
+          <button class="chip" data-filter="style" data-value="lager">Lager</button>
+          <button class="chip" data-filter="style" data-value="amber">Amber &amp; Pale</button>
+          <button class="chip" data-filter="style" data-value="ipa">IPA</button>
+          <button class="chip" data-filter="style" data-value="dark">Dark</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <span>Strength</span>
+        <div class="chips">
+          <button class="chip active" data-filter="abv" data-value="all">All</button>
+          <button class="chip" data-filter="abv" data-value="session">Session &lt;5%</button>
+          <button class="chip" data-filter="abv" data-value="standard">Standard 5–6.5%</button>
+          <button class="chip" data-filter="abv" data-value="strong">Strong 6.5%+</button>
+        </div>
+      </div>
+      <div class="tap-count" data-tap-count><b>14</b> beers on tap</div>
+      <div class="tap-count" style="border-left:1px solid var(--line);padding-left:28px;">$9 · 16oz &nbsp;|&nbsp; $10 · 20oz</div>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:56px;">
+    <div class="beer-grid" data-tap-grid>
+      {beers.map((beer) => (
+        <article class={`beer-card${!beer.onTap ? ' off-tap' : ''}`} data-style={beer.styleCat} data-abv={beer.abv} data-ontap={beer.onTap}>
+          <div class="beer-can" style="background:#e8d9b9;">
+            <div class="can" style={`background:${beer.canBg};`}>
+              <span class="cn" style={beer.light ? 'color:#e7d3a8;mix-blend-mode:normal;' : ''}>
+                {beer.cn[0]}<br />{beer.cn[1]}
+              </span>
+            </div>
+          </div>
+          <div class="beer-info">
+            <span class="style">{beer.style}</span>
+            <h3>{beer.name}</h3>
+            <p class="desc">{beer.desc}</p>
+            <div class="beer-specs">
+              <div class="s"><span>ABV</span><b>{beer.abv}%</b></div>
+              <div class="s"><span>IBU</span><b>{beer.ibu}</b></div>
+              <div class="tag-stack">
+                <span class={`tag${beer.tag === 'seasonal' ? ' seasonal' : beer.tag === 'guest' ? ' guest' : ''}`}>
+                  {beer.tag === 'seasonal' ? 'Seasonal' : beer.tag === 'guest' ? 'Guest' : 'Flagship'}
+                </span>
+                <span class={`tag ontap-tag${beer.onTap ? '' : ' ask-us'}`}>{beer.onTap ? 'On Tap' : 'Ask Us'}</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="no-results">No beers match those filters — try loosening up.</div>
+  </section>
+
+  <section class="section" style="padding-top:72px;padding-bottom:72px;">
+    <div style="max-width:860px;">
+
+      <h2 class="display reveal" style="font-size:clamp(36px,4.6vw,58px);margin:0 0 48px;line-height:0.92;">Also On The Menu</h2>
+
+      <!-- Wine -->
+      <div class="reveal d1" style="margin-bottom:48px;">
+        <span class="kicker" style="display:block;margin-bottom:20px;">Wine</span>
+        <div class="drinks-list">
+          <div class="drink-row">
+            <div>
+              <h4>House White</h4>
+            </div>
+            <div class="drink-price">$7 <span>6 oz</span> · $10 <span>9 oz</span></div>
+          </div>
+          <div class="drink-row">
+            <div>
+              <h4>House Red</h4>
+            </div>
+            <div class="drink-price">$7 <span>6 oz</span> · $10 <span>9 oz</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cider & Cocktails -->
+      <div class="reveal d1" style="margin-bottom:48px;">
+        <span class="kicker" style="display:block;margin-bottom:20px;">Cider &amp; Cocktails</span>
+        <div class="drinks-list">
+          <div class="drink-row">
+            <div>
+              <h4>Yip Cider</h4>
+            </div>
+            <div class="drink-price">$7 <span>can</span></div>
+          </div>
+          <div class="drink-row">
+            <div>
+              <h4>Kingston Creek Cider</h4>
+            </div>
+            <div class="drink-price">$7 <span>6 oz</span> · $10 <span>9 oz</span></div>
+          </div>
+          <div class="drink-row">
+            <div>
+              <h4>Caesar</h4>
+            </div>
+            <div class="drink-price">$7 <span>6 oz</span> · $10 <span>9 oz</span></div>
+          </div>
+          <div class="drink-row">
+            <div>
+              <h4>Moscow Mule</h4>
+            </div>
+            <div class="drink-price">$7 <span>6 oz</span> · $10 <span>9 oz</span></div>
+          </div>
+          <div class="drink-row">
+            <div>
+              <h4>Dave Matthews</h4>
+            </div>
+            <div class="drink-price">$7 <span>6 oz</span> · $10 <span>9 oz</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Non-Alcoholic -->
+      <div class="reveal d2">
+        <span class="kicker" style="display:block;margin-bottom:20px;">Non-Alcoholic</span>
+        <div class="drinks-list">
+          <div class="drink-row">
+            <div>
+              <h4>N/A Beer &amp; Drinks</h4>
+              <p>Canned non-alcoholic options available — ask your server for today's selection.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="band-amber">
+    <div class="section" style="padding:72px 32px;">
+      <div class="split2">
+        <div>
+          <span class="kicker" style="color:#5a2c14;">Flights &amp; Fills</span>
+          <h2 class="display" style="font-size:clamp(34px,4.6vw,58px);color:#1c130c;margin:14px 0 18px;line-height:0.92;">Best Tasted<br />Fresh, On The River</h2>
+          <p style="max-width:460px;font-size:17px;line-height:1.6;color:#3a1f0e;">Pull up a flight on the patio — five pours, your pick. Every one is brewed and poured right here in Hampton, with cans and growler fills to take home.</p>
+          <div style="margin-top:26px;">
+            <a class="btn" href="/visit" style="background:#1c130c;color:var(--cream);">Plan Your Visit →</a>
+          </div>
+        </div>
+        <div>
+          <img class="photo" src="/assets/photos/beer-flight-table.png" alt="A flight of Gridiron beers on the patio" style="height:clamp(360px,40vw,500px);" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  (function () {
+    const reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && reveals.length) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      reveals.forEach((el) => io.observe(el));
+    } else {
+      reveals.forEach((el) => el.classList.add('in'));
+    }
+
+    const grid = document.querySelector('[data-tap-grid]');
+    if (!grid) return;
+    const cards = Array.from(grid.querySelectorAll('.beer-card')) as HTMLElement[];
+    const state: Record<string, string> = { style: 'all', abv: 'all', ontap: 'all' };
+    const countEl = document.querySelector('[data-tap-count]');
+    const noRes = document.querySelector('.no-results') as HTMLElement | null;
+
+    function abvBucket(v: number) {
+      if (v < 5) return 'session';
+      if (v <= 6.5) return 'standard';
+      return 'strong';
+    }
+
+    function apply() {
+      let shown = 0;
+      cards.forEach((card) => {
+        const styleOk = state.style === 'all' || card.dataset.style === state.style;
+        const abvOk = state.abv === 'all' || abvBucket(parseFloat(card.dataset.abv || '0')) === state.abv;
+        const ontapOk = state.ontap === 'all' || card.dataset.ontap === state.ontap;
+        const ok = styleOk && abvOk && ontapOk;
+        card.classList.toggle('hidden', !ok);
+        if (ok) shown++;
+      });
+      if (countEl) countEl.innerHTML = `<b>${shown}</b> ${shown === 1 ? 'beer' : 'beers'} on tap`;
+      if (noRes) noRes.style.display = shown === 0 ? 'block' : 'none';
+    }
+
+    document.querySelectorAll('[data-filter]').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        const el = chip as HTMLElement;
+        const group = el.dataset.filter!;
+        const val = el.dataset.value!;
+        state[group] = val;
+        document.querySelectorAll(`[data-filter="${group}"]`).forEach((c) =>
+          c.classList.toggle('active', c === chip)
+        );
+        apply();
+      });
+    });
+
+    apply();
+  })();
+</script>
