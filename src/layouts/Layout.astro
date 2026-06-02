@@ -9,6 +9,56 @@ interface Props {
 }
 
 const { title = 'Gridiron Brewing — Hampton, New Brunswick', activeNav } = Astro.props;
+
+const siteUrl = 'https://gridironbrewing.ca';
+const pathname = Astro.url.pathname;
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'Brewery'],
+  name: 'Gridiron Brewing',
+  url: siteUrl,
+  telephone: '+15068324592',
+  email: 'info@gridironbrewing.com',
+  image: `${siteUrl}/assets/logos/logo-favicon.png`,
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '1051 Main Street',
+    addressLocality: 'Hampton',
+    addressRegion: 'NB',
+    addressCountry: 'CA',
+  },
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Tuesday',   opens: '16:00', closes: '20:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Wednesday', opens: '16:00', closes: '20:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Thursday',  opens: '12:00', closes: '20:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Friday',    opens: '12:00', closes: '21:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday',  opens: '12:00', closes: '21:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Sunday',    opens: '12:00', closes: '19:00' },
+  ],
+  sameAs: [
+    'https://www.instagram.com/gridironbrewing/',
+    'https://www.facebook.com/gridironbrewing/',
+    'https://untappd.com/MatchstickBeerFactory',
+  ],
+};
+
+const pageLabels: Record<string, string> = {
+  '/beers': 'Drinks',
+  '/events': 'Events',
+  '/visit': 'Visit',
+};
+const pageLabel = Object.entries(pageLabels).find(([k]) => pathname.startsWith(k))?.[1];
+
+const breadcrumb = pageLabel ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home',     item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: pageLabel,  item: `${siteUrl}${pathname}` },
+  ],
+} : null;
 ---
 
 <html lang="en">
@@ -34,6 +84,11 @@ const { title = 'Gridiron Brewing — Hampton, New Brunswick', activeNav } = Ast
     <meta name="twitter:image" content="/assets/logos/logo-favicon.png" />
     <!-- Theme colour for mobile browsers -->
     <meta name="theme-color" content="#c17a2b" />
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />
+    {breadcrumb && <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />}
+    <!-- Page-specific structured data slot -->
+    <slot name="head" />
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

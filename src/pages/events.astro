@@ -5,6 +5,39 @@ import eventsData from '../data/events.json';
 const upcoming = eventsData.events.filter(e => !e.recurring);
 const recurring = eventsData.events.filter(e => e.recurring);
 
+const siteUrl = 'https://gridironbrewing.ca';
+const eventSchemas = upcoming
+  .filter(ev => ev.calDate && new Date(ev.calDate) > new Date())
+  .map(ev => {
+    const start = new Date(ev.calDate);
+    const end = new Date(start);
+    end.setHours(end.getHours() + 2);
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Event',
+      name: ev.title,
+      description: ev.desc,
+      startDate: ev.calDate,
+      endDate: end.toISOString().slice(0, 16),
+      ...(ev.image ? { image: `${siteUrl}${ev.image}` } : {}),
+      location: {
+        '@type': 'Place',
+        name: 'Gridiron Brewing',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '1051 Main Street',
+          addressLocality: 'Hampton',
+          addressRegion: 'NB',
+          addressCountry: 'CA',
+        },
+      },
+      organizer: { '@type': 'Organization', name: 'Gridiron Brewing', url: siteUrl },
+      eventStatus: 'https://schema.org/EventScheduled',
+      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+      isAccessibleForFree: !ev.cover || ev.cover === 'No Fee',
+    };
+  });
+
 function gcalUrl(ev: { title: string; desc: string; calDate: string }): string {
   const dt = ev.calDate.replace(/[-:]/g, '');
   const end = (() => {
@@ -47,6 +80,11 @@ function icsUri(ev: { title: string; desc: string; calDate: string }): string {
 ---
 
 <Layout title="Events & Music — Gridiron Brewing" activeNav="Events">
+  <Fragment slot="head">
+    {eventSchemas.map(schema => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+  </Fragment>
 
   <section class="page-hero grain">
     <span class="kicker">What's On · Hampton, NB</span>
