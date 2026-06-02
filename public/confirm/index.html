@@ -13,10 +13,10 @@
   <body>
     <p>Setting up your account…</p>
     <script>
-      netlifyIdentity.init();
-      netlifyIdentity.open();
-      netlifyIdentity.on('login', () => {
-        window.location.href = '/admin/';
+      netlifyIdentity.on('init', () => {
+        netlifyIdentity.on('login', () => {
+          window.location.href = '/admin/';
+        });
       });
     </script>
   </body>
