@@ -137,7 +137,7 @@ img { display: block; max-width: 100%; }
 .beer-info .style { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
 .beer-info h3 { font-family: 'Anton', sans-serif; font-weight: 400; font-size: 26px; text-transform: uppercase; letter-spacing: .01em; line-height: .92; color: var(--ink); }
 .beer-info .desc { font-size: 14px; color: var(--ink-2); line-height: 1.5; margin: 2px 0 4px; }
-.beer-specs { margin-top: auto; display: flex; gap: 18px; padding-top: 12px; border-top: 1px dashed var(--line); font-family: 'DM Mono', monospace; font-size: 12px; }
+.beer-specs { margin-top: auto; display: flex; gap: 32px; padding-top: 12px; border-top: 1px dashed var(--line); font-family: 'DM Mono', monospace; font-size: 12px; }
 .beer-specs .s { display: flex; flex-direction: column; gap: 1px; }
 .beer-specs .s span { font-size: 11px; letter-spacing: .06em; color: var(--ink-3); }
 .beer-specs .s b { color: var(--rust); font-size: 14px; }
