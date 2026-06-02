@@ -22,6 +22,7 @@ const localBusiness = {
   email: 'info@gridironbrewing.com',
   image: `${siteUrl}/assets/logos/logo-favicon.png`,
   priceRange: '$$',
+  description: 'Small-batch craft brewery and taproom in Hampton, New Brunswick — 25 minutes from uptown Saint John. Cold pints, patio on the Kennebecasis, live music most weekends.',
   address: {
     '@type': 'PostalAddress',
     streetAddress: '1051 Main Street',
@@ -29,6 +30,15 @@ const localBusiness = {
     addressRegion: 'NB',
     addressCountry: 'CA',
   },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 45.5288,
+    longitude: -65.8330,
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Hampton',    addressRegion: 'NB', addressCountry: 'CA' },
+    { '@type': 'City', name: 'Saint John', addressRegion: 'NB', addressCountry: 'CA' },
+  ],
   openingHoursSpecification: [
     { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Tuesday',   opens: '16:00', closes: '20:00' },
     { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Wednesday', opens: '16:00', closes: '20:00' },
