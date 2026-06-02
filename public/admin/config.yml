@@ -114,12 +114,14 @@ collections:
               - label: "Day"
                 name: day
                 widget: string
-                hint: "Two digit day number, e.g. 06, 14, 21"
+                required: false
+                hint: "Two digit day number, e.g. 06, 14, 21 — leave blank for recurring events"
 
               - label: "Month"
                 name: month
                 widget: string
-                hint: "Three letter month abbreviation, e.g. JUN, JUL, AUG"
+                required: false
+                hint: "Three letter month abbreviation, e.g. JUN, JUL, AUG — leave blank for recurring events"
 
               - label: "Event Name"
                 name: title
