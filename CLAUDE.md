@@ -86,9 +86,9 @@ Three fonts are in use. Use them deliberately:
 |---|---|
 | **Archivo** | Body copy, UI text, prices, event times — anything that needs to be read comfortably |
 | **Anton** | Display headings, large stat numbers (tap count, ABV values) |
-| **Space Mono** | Short technical labels only: nav links, kickers, filter chips, beer style tags |
+| **DM Mono** | Short technical labels only: nav links, kickers, filter chips, beer style tags |
 
-**Do not use Space Mono for prices or oz sizes** — it renders a dotted zero which looks wrong in a price context. Use Archivo instead.
+**Do not use DM Mono for prices or oz sizes** — use Archivo instead for anything that needs to be read as a number in context.
 
 ---
 
