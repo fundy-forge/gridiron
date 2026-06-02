@@ -1,8 +1,32 @@
 {
   "events": [
-    { "day": "06", "month": "JUN", "title": "The Marsh Reelers — Live", "desc": "East-coast folk & fiddle. Loud, fast, and a little sweaty.", "when": "Fri · 8:00 PM" },
-    { "day": "11", "month": "JUN", "title": "Wednesday Trivia Night",   "desc": "Six rounds, daft prizes, free pints for the winners.",       "when": "Wed · 7:30 PM" },
-    { "day": "14", "month": "JUN", "title": "Cask Night: Maple Porter", "desc": "One firkin, hand-pulled, gone when it's gone. Get in early.", "when": "Sat · 4:00 PM" },
-    { "day": "21", "month": "JUN", "title": "Patio Sessions: Habit & Holler", "desc": "Sunset set on the river patio. Bring a sweater.",      "when": "Sat · 7:00 PM" }
+    {
+      "day": "05",
+      "month": "JUN",
+      "title": "Stoked Pizza - Food Truck On Site!",
+      "desc": "Wood-fired artisan pizzas made fresh to order. The perfect pairing for a cold pint.",
+      "when": "Fri · 12 - 7 PM"
+    },
+    {
+      "day": "05",
+      "month": "JUN",
+      "title": "Live on the Deck: Granny Takes a Trip",
+      "desc": "Re-Opening Night!! No Cover",
+      "when": "Sat · 7:00 PM"
+    },
+    {
+      "day": "06",
+      "month": "JUN",
+      "title": "Costa Nachos - Food Truck On Site!",
+      "desc": "Loaded nachos and bold Mexican flavours. Hard to stop at one round.",
+      "when": "Sat · 2- 7 PM"
+    },
+    {
+      "day": "07",
+      "month": "JUN",
+      "title": "Sakura Hibachi - Food Truck On Site!",
+      "desc": "Fresh hibachi and Japanese favourites, cooked right outside the patio.",
+      "when": "Sat · 12 - 7 PM"
+    }
   ]
 }
