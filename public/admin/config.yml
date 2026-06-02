@@ -98,6 +98,8 @@ collections:
   # ── EVENTS ──────────────────────────────────────────────
   - name: events
     label: "📅 Events"
+    media_folder: "/public/assets/events"
+    public_folder: "/assets/events"
     files:
       - name: events
         label: Upcoming Events
