@@ -10,7 +10,19 @@ const onTap = beers.filter(b => b.onTap && b.tag !== 'hidden');
         <span class="kicker reveal">On Tap Now</span>
         <h2 class="reveal d1">What's Pouring</h2>
       </div>
-      <a class="btn btn-amber reveal d1" href="/beers">Full Tap List →</a>
+      <div style="display:flex;align-items:flex-end;gap:28px;flex-wrap:wrap;">
+        <div class="reveal d1" style="display:flex;gap:20px;">
+          <div style="text-align:center;">
+            <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-bright);margin:0 0 4px;">16 oz</p>
+            <p style="font-size:26px;font-family:'Anton',sans-serif;color:var(--cream);margin:0;line-height:1;">$9</p>
+          </div>
+          <div style="text-align:center;">
+            <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-bright);margin:0 0 4px;">20 oz</p>
+            <p style="font-size:26px;font-family:'Anton',sans-serif;color:var(--cream);margin:0;line-height:1;">$10</p>
+          </div>
+        </div>
+        <a class="btn btn-amber reveal d1" href="/beers">Full Tap List →</a>
+      </div>
     </div>
     <div class="beer-grid">
       {onTap.map((beer, i) => (
