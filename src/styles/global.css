@@ -239,7 +239,7 @@ img { display: block; max-width: 100%; }
   .section { padding: 64px 24px; }
   .beer-grid { grid-template-columns: repeat(2, 1fr); }
   .split2 { grid-template-columns: 1fr; gap: 32px; }
-  .event-row { grid-template-columns: 64px 1fr; gap: 18px; }
+  .event-row { grid-template-columns: 80px 1fr; gap: 22px; }
   .event-meta { grid-column: 2; text-align: left; }
   .event-date .d { font-size: 32px; }
 
