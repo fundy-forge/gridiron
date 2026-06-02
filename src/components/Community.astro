@@ -168,7 +168,7 @@ const initial = photos.slice(0, 6);
   if (mosaic && pool.length > 6) {
     const items = Array.from(mosaic.querySelectorAll('.mosaic-item')) as HTMLElement[];
     let slotIdx = 0;
-    let queue = pool.filter(p => !new Set(items.map(el => el.getAttribute('data-src'))).has(p.src));
+    let queue: typeof pool = [];
 
     setInterval(() => {
       if (paused) return;
@@ -176,9 +176,19 @@ const initial = photos.slice(0, 6);
       const slot = items[slotIdx % items.length];
       slotIdx++;
 
-      if (queue.length === 0) queue = [...pool];
-      const next = queue.splice(Math.floor(Math.random() * queue.length), 1)[0];
-      if (!next) return;
+      // Always exclude every photo currently visible in any slot
+      const shown = new Set(items.map(el => el.getAttribute('data-src')));
+
+      // Refill queue from pool minus currently shown whenever it runs low
+      if (queue.filter(p => !shown.has(p.src)).length === 0) {
+        queue = pool.filter(p => !shown.has(p.src));
+      }
+
+      const eligible = queue.filter(p => !shown.has(p.src));
+      if (eligible.length === 0) return;
+
+      const next = eligible[Math.floor(Math.random() * eligible.length)];
+      queue = queue.filter(p => p.src !== next.src);
 
       const img = slot.querySelector('img') as HTMLImageElement | null;
       if (!img) return;
