@@ -71,7 +71,7 @@ img { display: block; max-width: 100%; }
 .brand .wordmark { height: 48px; width: auto; mix-blend-mode: multiply; }
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-links a { font-family: 'DM Mono', monospace; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; color: var(--ink-2); transition: color .15s; }
-.nav-links a:hover { color: var(--amber); }
+.nav-links a:hover, .nav-links a.active { color: var(--amber); }
 .nav-cta { display: flex; align-items: center; gap: 18px; }
 .menu-btn { display: none; background: none; border: none; cursor: pointer; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
 
