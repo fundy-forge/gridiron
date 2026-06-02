@@ -99,7 +99,6 @@ const breadcrumb = pageLabel ? {
     {breadcrumb && <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />}
     <!-- Page-specific structured data slot -->
     <slot name="head" />
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=DM+Mono:wght@400;500&display=swap" />
@@ -108,24 +107,20 @@ const breadcrumb = pageLabel ? {
   </head>
   <body>
     <script>
-      window.addEventListener('load', () => {
-        if (window.netlifyIdentity) {
-          window.netlifyIdentity.on("init", user => {
-            if (!user) {
-              window.netlifyIdentity.on("login", () => {
-                document.location.href = "/admin/";
-              });
-            }
+      // Load Netlify Identity widget only when an invite/recovery token is present
+      if (window.location.hash && (
+        window.location.hash.includes('invite_token') ||
+        window.location.hash.includes('recovery_token')
+      )) {
+        const s = document.createElement('script');
+        s.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
+        s.onload = () => {
+          window.netlifyIdentity.on('init', (user: any) => {
+            if (!user) window.netlifyIdentity.open();
           });
-          // Auto-open widget if invite/recovery token is in URL
-          if (window.location.hash && (
-            window.location.hash.includes('invite_token') ||
-            window.location.hash.includes('recovery_token')
-          )) {
-            window.netlifyIdentity.open();
-          }
-        }
-      });
+        };
+        document.head.appendChild(s);
+      }
     </script>
     <Navbar activeNav={activeNav} />
     <main>
