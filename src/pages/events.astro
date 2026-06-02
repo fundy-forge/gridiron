@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import eventsData from '../data/events.json';
+
+const upcoming = eventsData.events.filter(e => !e.recurring);
+const recurring = eventsData.events.filter(e => e.recurring);
+---
+
+<Layout title="Events & Music — Gridiron Brewing Co." activeNav="Events">
+
+  <section class="page-hero grain">
+    <span class="kicker">What's On · Hampton, NB</span>
+    <h1>Events &amp; Music</h1>
+    <p>Live music most weekends, trivia every Tuesday, food trucks on the patio, and a few surprises along the way. Always free to get in.</p>
+  </section>
+
+  <!-- Upcoming special events -->
+  {upcoming.length > 0 && (
+    <section class="section">
+      <div class="section-head">
+        <span class="kicker reveal">Mark Your Calendar</span>
+        <h2 class="reveal d1">Coming Up</h2>
+      </div>
+      <div class="event-list">
+        {upcoming.map((ev, i) => (
+          <div class={`event-row reveal${i > 0 ? ` d${Math.min(i, 3)}` : ''}`}>
+            <div class="event-date">
+              <span class="d">{ev.day}</span>
+              <span class="m">{ev.month}</span>
+            </div>
+            <div class="event-body">
+              <h4>{ev.title}</h4>
+              <p>{ev.desc}</p>
+            </div>
+            <div class="event-meta">
+              {ev.when}<br /><span class="free">{ev.cover}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Recurring weekly events -->
+  <section class="band-paper2 section">
+    <div class="section-head">
+      <span class="kicker reveal">Every Week</span>
+      <h2 class="reveal d1">Regular Nights</h2>
+      <p class="lead reveal d1">These happen on the regular — no date required. Just show up.</p>
+    </div>
+    <div class="event-list">
+      {recurring.map((ev, i) => (
+        <div class={`event-row reveal${i > 0 ? ` d${Math.min(i, 3)}` : ''}`}>
+          <div class="event-date recurring-badge">
+            <span class="rec-icon">↻</span>
+          </div>
+          <div class="event-body">
+            <h4>{ev.title}</h4>
+            <p>{ev.desc}</p>
+          </div>
+          <div class="event-meta">
+            {ev.when}<br /><span class="free">{ev.cover}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section class="band-dark">
+    <div class="section" style="padding:72px 32px;text-align:center;">
+      <span class="kicker" style="color:var(--amber-bright);">Stay In The Loop</span>
+      <h2 class="display" style="font-size:clamp(32px,4vw,54px);color:var(--cream);margin:16px 0 20px;line-height:0.92;">Follow Along<br />On Instagram</h2>
+      <p style="font-size:17px;color:rgba(250,243,228,.74);max-width:480px;margin:0 auto 32px;line-height:1.6;">Tap releases, last-minute food trucks, live music announcements — it all lands on Instagram first.</p>
+      <a class="btn btn-amber" href="https://www.instagram.com/gridironbrewing/" target="_blank" rel="noopener">@gridironbrewing →</a>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .recurring-badge {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .rec-icon {
+    font-size: 32px;
+    color: var(--amber);
+    line-height: 1;
+  }
+</style>

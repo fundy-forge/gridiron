@@ -1,16 +1,16 @@
 ---
 import eventsData from '../data/events.json';
-const events = eventsData.events;
+const upcoming = eventsData.events.filter(e => !e.recurring).slice(0, 4);
 ---
 
 <section class="band-paper2 section" id="events">
   <div class="section-head">
     <span class="kicker reveal">Live At Gridiron</span>
     <h2 class="reveal d1">Events &amp; Music</h2>
-    <p class="lead reveal d1">Something on most nights we're open. Live music every weekend, trivia midweek, and the occasional cask night. Always free to get in.</p>
+    <p class="lead reveal d1">Something on most nights we're open. Live music every weekend, trivia midweek, and the occasional food truck. Always free to get in.</p>
   </div>
   <div class="event-list">
-    {events.map((ev, i) => (
+    {upcoming.map((ev, i) => (
       <div class={`event-row reveal${i > 0 ? ` d${Math.min(i, 3)}` : ''}`}>
         <div class="event-date">
           <span class="d">{ev.day}</span>
@@ -25,5 +25,8 @@ const events = eventsData.events;
         </div>
       </div>
     ))}
+  </div>
+  <div style="text-align:center;margin-top:40px;">
+    <a class="btn btn-amber reveal" href="/events">Full Calendar →</a>
   </div>
 </section>

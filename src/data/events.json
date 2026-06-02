@@ -1,8 +1,12 @@
 {
   "events": [
-    { "day": "05", "month": "JUN", "title": "Stoked Pizza - Food Truck On Site!", "desc": "Wood-fired artisan pizzas made fresh to order. The perfect pairing for a cold pint.", "when": "Fri · 12 - 7 PM", "cover": "No Fee" },
-    { "day": "05", "month": "JUN", "title": "Live on the Deck: Granny Takes a Trip", "desc": "Re-Opening Night!! No Cover", "when": "Sat · 7:00 PM", "cover": "No Fee" },
-    { "day": "06", "month": "JUN", "title": "Costa Nachos - Food Truck On Site!", "desc": "Loaded nachos and bold Mexican flavours. Hard to stop at one round.", "when": "Sat · 2- 7 PM", "cover": "No Fee" },
-    { "day": "07", "month": "JUN", "title": "Sakura Hibachi - Food Truck On Site!", "desc": "Fresh hibachi and Japanese favourites, cooked right outside the patio.", "when": "Sat · 12 - 7 PM", "cover": "No Fee" }
+    { "day": "05", "month": "JUN", "title": "Live on the Deck: Granny Takes a Trip", "desc": "Re-Opening Night! Folk-rock trio live on the patio. You'll be tapping your toes.", "when": "Thu · 7:00 PM", "cover": "No Fee", "recurring": false },
+    { "day": "06", "month": "JUN", "title": "Costa Nachos — Food Truck", "desc": "Loaded nachos and bold Mexican flavours. Hard to stop at one round.", "when": "Fri · 2:00 – 7:00 PM", "cover": "No Fee", "recurring": false },
+    { "day": "07", "month": "JUN", "title": "Sakura Hibachi — Food Truck", "desc": "Fresh hibachi and Japanese favourites, cooked right outside on the patio.", "when": "Sat · 12:00 – 7:00 PM", "cover": "No Fee", "recurring": false },
+    { "day": "08", "month": "JUN", "title": "Stoked Pizza — Food Truck", "desc": "Wood-fired artisan pizzas made fresh to order. The perfect pairing for a cold pint.", "when": "Sun · 12:00 – 7:00 PM", "cover": "No Fee", "recurring": false },
+    { "day": "", "month": "", "title": "Tuesday Trivia Night", "desc": "Teams accumulate points for quarterly gift certificates. Solo play welcome — grab a beer and give it a go.", "when": "Every Tuesday · 7:00 PM", "cover": "No Fee", "recurring": true },
+    { "day": "", "month": "", "title": "Deck Dogs Saturdays", "desc": "$1 off every beer when you bring your pup. Water and treats provided. Always a pet-friendly space.", "when": "Every Saturday · 12:00 PM", "cover": "No Fee", "recurring": true },
+    { "day": "", "month": "", "title": "Beer & Caesar Sundays", "desc": "$1 Caesars, $1 off beer, $1 off any drink. The best reason to stay for one more.", "when": "Every Sunday · 12:00 PM", "cover": "No Fee", "recurring": true },
+    { "day": "", "month": "", "title": "Stoked Pizza Fridays", "desc": "Delicious artisan pizza made on site every Friday. You will not regret getting one.", "when": "Every Friday · 12:00 PM", "cover": "No Fee", "recurring": true }
   ]
 }
