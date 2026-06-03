@@ -1,0 +1,16 @@
+{
+  "name": "Venture Electric IPA",
+  "style": "West Coast IPA",
+  "desc": "Bright, resinous West Coast hops. Wired for the weekend.",
+  "abv": 5.5,
+  "ibu": 65,
+  "tag": "seasonal",
+  "styleCat": "ipa",
+  "canColor": "#a89e28",
+  "canLabel": [
+    "Venture",
+    "Electric"
+  ],
+  "lightText": false,
+  "onTap": true
+}

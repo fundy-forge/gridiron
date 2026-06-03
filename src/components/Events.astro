@@ -1,7 +1,7 @@
 ---
-import eventsData from '../data/events.json';
-const upcoming = eventsData.events.filter(e => !e.recurring).slice(0, 4);
-const recurring = eventsData.events.filter(e => e.recurring).slice(0, 3);
+import { events } from '../data/events';
+const upcoming = events.filter(e => !e.recurring).slice(0, 4);
+const recurring = events.filter(e => e.recurring).slice(0, 3);
 ---
 
 <section class="band-paper2" id="events">

@@ -1,0 +1,16 @@
+{
+  "name": "Paddler's Pale Ale",
+  "style": "American Pale Ale",
+  "desc": "Bright and citrusy.",
+  "abv": 4.5,
+  "ibu": 40,
+  "tag": "flagship",
+  "styleCat": "amber",
+  "canColor": "#bc9428",
+  "canLabel": [
+    "Paddler's",
+    "Pale Ale"
+  ],
+  "lightText": false,
+  "onTap": true
+}

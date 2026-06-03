@@ -1,0 +1,16 @@
+{
+  "name": "Mind the Gap",
+  "style": "English Bitter",
+  "desc": "Interestingly, not that bitter.",
+  "abv": 4.5,
+  "ibu": 30,
+  "tag": "seasonal",
+  "styleCat": "amber",
+  "canColor": "#9a6028",
+  "canLabel": [
+    "Mind",
+    "the Gap"
+  ],
+  "lightText": false,
+  "onTap": true
+}

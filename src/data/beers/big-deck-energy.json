@@ -1,0 +1,16 @@
+{
+  "name": "Big Deck Energy",
+  "style": "American Pale Ale",
+  "desc": "Patio-ready pale with bright hop character. Perfect for hot days.",
+  "abv": 4.5,
+  "ibu": 40,
+  "tag": "seasonal",
+  "styleCat": "amber",
+  "canColor": "#b88428",
+  "canLabel": [
+    "Big Deck",
+    "Energy"
+  ],
+  "lightText": false,
+  "onTap": false
+}

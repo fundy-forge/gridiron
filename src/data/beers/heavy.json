@@ -1,0 +1,16 @@
+{
+  "name": "Heavy",
+  "style": "New England IPA",
+  "desc": "Heavy on hops and heavy on flavour.",
+  "abv": 7.5,
+  "ibu": 60,
+  "tag": "seasonal",
+  "styleCat": "ipa",
+  "canColor": "#c8a428",
+  "canLabel": [
+    "Heavy",
+    ""
+  ],
+  "lightText": false,
+  "onTap": true
+}

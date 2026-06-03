@@ -1,0 +1,16 @@
+{
+  "name": "T-Shirt Weather",
+  "style": "Dampfbier",
+  "desc": "German wheat beer. Barely-there and bone-dry. Made for the first warm day.",
+  "abv": 3.9,
+  "ibu": 12,
+  "tag": "seasonal",
+  "styleCat": "lager",
+  "canColor": "#dcc856",
+  "canLabel": [
+    "T-Shirt",
+    "Weather"
+  ],
+  "lightText": false,
+  "onTap": true
+}

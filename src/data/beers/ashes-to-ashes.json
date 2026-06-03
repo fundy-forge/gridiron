@@ -1,0 +1,16 @@
+{
+  "name": "Ashes to Ashes",
+  "style": "Dry English Stout",
+  "desc": "Very dark and very dry. Roasted to the very last drop.",
+  "abv": 6.7,
+  "ibu": 39,
+  "tag": "seasonal",
+  "styleCat": "dark",
+  "canColor": "#180e08",
+  "canLabel": [
+    "Ashes to",
+    "Ashes"
+  ],
+  "lightText": true,
+  "onTap": false
+}

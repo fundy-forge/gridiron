@@ -1,0 +1,16 @@
+{
+  "name": "Frig U Red",
+  "style": "Red Ale",
+  "desc": "Dark red with notes of spice.",
+  "abv": 5.5,
+  "ibu": 40,
+  "tag": "flagship",
+  "styleCat": "amber",
+  "canColor": "#902010",
+  "canLabel": [
+    "Frig U",
+    "Red"
+  ],
+  "lightText": true,
+  "onTap": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Blind Date Brown",
+  "style": "Brown Ale",
+  "desc": "Smooth, like your first date.",
+  "abv": 5.9,
+  "ibu": 30,
+  "tag": "flagship",
+  "styleCat": "dark",
+  "canColor": "#5c3418",
+  "canLabel": [
+    "Blind",
+    "Date"
+  ],
+  "lightText": true,
+  "onTap": true
+}

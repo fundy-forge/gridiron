@@ -1,0 +1,16 @@
+{
+  "name": "Beach Road Rhubarb",
+  "style": "Fruity Hefeweizen",
+  "desc": "Sweet hefeweizen with tart rhubarb. Summer in a glass.",
+  "abv": 5.5,
+  "ibu": 15,
+  "tag": "seasonal",
+  "styleCat": "lager",
+  "canColor": "#d4b040",
+  "canLabel": [
+    "Beach Rd",
+    "Rhubarb"
+  ],
+  "lightText": false,
+  "onTap": false
+}

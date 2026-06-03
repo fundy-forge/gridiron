@@ -1,10 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import eventsData from '../data/events.json';
+import { events } from '../data/events';
 import { siteUrl } from '../utils/constants';
 
-const upcoming = eventsData.events.filter(e => !e.recurring);
-const recurring = eventsData.events.filter(e => e.recurring);
+const upcoming = events.filter(e => !e.recurring);
+const recurring = events.filter(e => e.recurring);
 const eventSchemas = upcoming
   .filter(ev => ev.calDate && new Date(ev.calDate) > new Date())
   .map(ev => {
@@ -60,7 +60,7 @@ function icsUri(ev: { title: string; desc: string; calDate: string }): string {
   const start = new Date(ev.calDate);
   const end = new Date(start);
   end.setHours(end.getHours() + 2);
-  const uid = `${ev.calDate.replace(/\W/g, '')}-gridiron@gridironbrewing.ca`;
+  const uid = `${ev.calDate.replace(/\W/g, '')}-gridiron@gridironbrewing.com`;
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',

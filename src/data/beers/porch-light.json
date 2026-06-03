@@ -1,0 +1,16 @@
+{
+  "name": "Porch Light",
+  "style": "Honey Wheat",
+  "desc": "Light, smooth and slightly sweet, like your second date.",
+  "abv": 4.5,
+  "ibu": 10,
+  "tag": "flagship",
+  "styleCat": "lager",
+  "canColor": "#d4a830",
+  "canLabel": [
+    "Porch",
+    "Light"
+  ],
+  "lightText": false,
+  "onTap": true
+}

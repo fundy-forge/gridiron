@@ -1,0 +1,16 @@
+{
+  "name": "Forbidden IPA",
+  "style": "West Coast IPA",
+  "desc": "Piney and citrusy hoppiness.",
+  "abv": 5.6,
+  "ibu": 60,
+  "tag": "flagship",
+  "styleCat": "ipa",
+  "canColor": "#a89a20",
+  "canLabel": [
+    "Forbidden",
+    "IPA"
+  ],
+  "lightText": false,
+  "onTap": true
+}

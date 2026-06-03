@@ -1,0 +1,16 @@
+{
+  "name": "Gridiron Light",
+  "style": "Pale Ale",
+  "desc": "Clean, crisp, and refreshing.",
+  "abv": 4,
+  "ibu": 8,
+  "tag": "flagship",
+  "styleCat": "lager",
+  "canColor": "#d8c450",
+  "canLabel": [
+    "Gridiron",
+    "Light"
+  ],
+  "lightText": false,
+  "onTap": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "PS: Go F*ck Yourself",
+  "style": "Spiced Amber",
+  "desc": "Pumpkin spice autumn beer with a bold opinion.",
+  "abv": 5.5,
+  "ibu": 30,
+  "tag": "seasonal",
+  "styleCat": "amber",
+  "canColor": "#8c5828",
+  "canLabel": [
+    "PS: Go F*ck",
+    "Yourself"
+  ],
+  "lightText": false,
+  "onTap": false
+}

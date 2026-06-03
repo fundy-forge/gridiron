@@ -4,9 +4,14 @@
 Static brewery website for **Gridiron Brewing**, Hampton, New Brunswick.
 Built with Astro 6.4.2 + TypeScript + Tailwind CSS 4.3.0. Node >= 22.12.0 required.
 
-Live site: **gridironbrewing.ca**
+Live site: **gridironbrewing.com**
 GitHub: https://github.com/docfunbags/gridiron.git (branch: `main`)
-CMS: Decap CMS at `/admin` (git-gateway backend)
+CMS: Keystatic at `/keystatic` (local dev) / GitHub OAuth (production)
+
+**Contact details** — use these wherever the brewery's info appears:
+- Phone: `(506) 832-4592` · tel link: `tel:+15068324592`
+- Email: `info@gridironbrewing.com`
+- Address: `1051 Main Street, Hampton, NB E5N 6B2`
 
 ---
 
@@ -24,21 +29,28 @@ git commit -m "description"
 git push
 ```
 
-If there's a merge conflict, it's almost always `src/data/*.json` being edited via CMS at the same time. Resolve by keeping the CMS version of content and re-applying the code change.
+If there's a merge conflict, it's almost always a `src/data/*/` entry file edited via CMS at the same time. Resolve by keeping the CMS version of content and re-applying the code change.
 
 ---
 
-## Content Management (Decap CMS)
+## Content Management (Keystatic)
 
-All content is managed through `/admin` on the live site. CMS edits commit directly to GitHub as JSON. Never hardcode content that belongs in these files:
+Content is managed through `/keystatic` on the live site (requires GitHub OAuth login). Each entry is stored as an individual JSON file. Never hardcode content that belongs in these directories:
 
-| CMS Collection | Data File | Used By |
+| CMS Collection | Data Directory | Used By |
 |---|---|---|
-| 🍺 Beer List | `src/data/beers.json` | `beers.astro`, `OnTap.astro` |
-| 📅 Events | `src/data/events.json` | `Events.astro` |
-| 📸 Community Photos | `src/data/community.json` | `Community.astro` |
+| 🍺 Beer List | `src/data/beers/*.json` | `beers.astro`, `OnTap.astro` |
+| 📅 Events | `src/data/events/*.json` | `events.astro`, `Events.astro` |
+| 📸 Community Photos | `src/data/community/*.json` | `gallery.astro`, `Community.astro` |
 
-`src/data/beers.ts` imports `beers.json` and computes `canBg` (gradient from `canColor`) — this is the single source of truth for beer data consumed by components.
+Data modules:
+- `src/data/beers.ts` — globs `beers/*.json`, computes `canBg` (gradient from `canColor`), exports `beers[]`
+- `src/data/events.ts` — globs `events/*.json`, sorts non-recurring chronologically then recurring, exports `events[]`
+- `src/data/community.ts` — globs `community/*.json`, exports `photos[]`
+
+Event slugs: non-recurring are date-prefixed (`2026-06-05-event-name.json`); recurring are title-slugified only.
+
+**Production setup** requires two Cloudflare environment variables: `KEYSTATIC_GITHUB_CLIENT_ID` and `KEYSTATIC_GITHUB_CLIENT_SECRET` (from a GitHub OAuth App). Without these, the `/keystatic` admin is local-only and will not function on Cloudflare Pages.
 
 ---
 

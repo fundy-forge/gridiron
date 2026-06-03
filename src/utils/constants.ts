@@ -1,1 +1,1 @@
-export const siteUrl = 'https://gridironbrewing.ca';
+export const siteUrl = 'https://gridironbrewing.com';
