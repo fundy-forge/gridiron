@@ -217,7 +217,7 @@ img { display: block; max-width: 100%; }
 /* ============================================================
    TAP LIST FILTER
    ============================================================ */
-.tap-controls { position: sticky; top: 67px; z-index: 30; background: rgba(241,230,208,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.tap-controls { position: sticky; top: 80px; z-index: 30; background: rgba(241,230,208,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 .tap-controls .inner { max-width: var(--maxw); margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; }
 .filter-group { display: flex; align-items: center; gap: 10px; }
 .filter-group > span { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
