@@ -129,16 +129,17 @@ img { display: block; max-width: 100%; }
 /* ============================================================
    BEER CARDS
    ============================================================ */
-.beer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+.beer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
 .beer-card { background: var(--cream); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; height: 100%; transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
-.beer-card:hover { transform: translateY(-5px); box-shadow: 0 22px 40px -26px rgba(0,0,0,.5); }
+.beer-card::before { content: ""; display: block; height: 3px; background: linear-gradient(90deg, var(--amber), var(--amber-bright)); flex-shrink: 0; }
+.beer-card:hover { transform: translateY(-5px); box-shadow: 0 28px 52px -18px rgba(33,23,17,.45); }
 .beer-can { height: 264px; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--line); }
 .beer-can .can { width: 108px; height: 192px; border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 14px 12px; border: 1px solid rgba(33,23,17,.25); position: relative; overflow: hidden; }
 .beer-can .can .cn { font-family: 'Anton', sans-serif; font-size: 15px; text-transform: uppercase; letter-spacing: .04em; text-align: center; line-height: 1; padding: 0 8px; color: #1c130c; mix-blend-mode: multiply; }
 .beer-can .can::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 30px; background: rgba(0,0,0,.12); }
-.beer-info { padding: 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.beer-info { padding: 24px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
 .beer-info .style { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
-.beer-info h3 { font-family: 'Anton', sans-serif; font-weight: 400; font-size: 26px; text-transform: uppercase; letter-spacing: .01em; line-height: .92; color: var(--ink); }
+.beer-info h3 { font-family: 'Anton', sans-serif; font-weight: 400; font-size: 28px; text-transform: uppercase; letter-spacing: .01em; line-height: .92; color: var(--ink); }
 .beer-info .desc { font-size: 14px; color: var(--ink-2); line-height: 1.5; margin: 2px 0 4px; }
 .beer-specs { margin-top: auto; display: flex; gap: 32px; padding-top: 12px; border-top: 1px dashed var(--line); font-family: 'DM Mono', monospace; font-size: 12px; }
 .beer-specs .s { display: flex; flex-direction: column; gap: 1px; }
@@ -149,7 +150,7 @@ img { display: block; max-width: 100%; }
 .beer-specs .tag.guest { background: #2a5c8a; color: #d4eaf7; }
 .beer-specs .tag-stack { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
 .beer-specs .tag-stack .tag { margin-left: 0; }
-.beer-specs .tag.ontap-tag { background: #2a6e3f; color: #d4f0df; }
+.beer-specs .tag.ontap-tag { background: #2a6e3f; color: #d4f0df; font-size: 10px; padding: 4px 10px; }
 .beer-specs .tag.ask-us { background: rgba(33,23,17,.12); color: var(--ink-3); }
 .beer-card.off-tap { opacity: 0.6; }
 .beer-card.off-tap .beer-can { filter: grayscale(40%); }
