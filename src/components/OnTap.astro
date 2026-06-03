@@ -32,13 +32,13 @@ const onTap = beers.filter(b => b.onTap && b.tag !== 'hidden');
             <h3>{beer.name}</h3>
             <p class="desc">{beer.desc}</p>
             <div class="beer-specs">
-              <div class="s"><span>ABV</span><b>{beer.abv}%</b></div>
-              <div class="s"><span>IBU</span><b>{beer.ibu}</b></div>
+              <div class="spec"><span>ABV</span><b>{beer.abv}%</b></div>
+              <div class="spec"><span>IBU</span><b>{beer.ibu}</b></div>
               <div class="tag-stack">
                 <span class={`tag${beer.tag === 'seasonal' ? ' seasonal' : ''}`}>
                   {beer.tag === 'seasonal' ? 'Seasonal' : 'Flagship'}
                 </span>
-                <span class="tag ontap-tag">On Tap</span>
+                <span class="tag ontap">On Tap</span>
               </div>
             </div>
           </div>

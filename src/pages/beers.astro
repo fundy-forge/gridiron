@@ -64,13 +64,13 @@ const beers = [...allBeers]
             <h3>{beer.name}</h3>
             <p class="desc">{beer.desc}</p>
             <div class="beer-specs">
-              <div class="s"><span>ABV</span><b>{beer.abv}%</b></div>
-              <div class="s"><span>IBU</span><b>{beer.ibu}</b></div>
+              <div class="spec"><span>ABV</span><b>{beer.abv}%</b></div>
+              <div class="spec"><span>IBU</span><b>{beer.ibu}</b></div>
               <div class="tag-stack">
                 <span class={`tag${beer.tag === 'seasonal' ? ' seasonal' : beer.tag === 'guest' ? ' guest' : ''}`}>
                   {beer.tag === 'seasonal' ? 'Seasonal' : beer.tag === 'guest' ? 'Guest' : 'Flagship'}
                 </span>
-                <span class={`tag ontap-tag${beer.onTap ? '' : ' ask-us'}`}>{beer.onTap ? 'On Tap' : 'Ask Us'}</span>
+                <span class={`tag${beer.onTap ? ' ontap' : ' ask'}`}>{beer.onTap ? 'On Tap' : 'Ask Us'}</span>
               </div>
             </div>
           </div>
@@ -162,10 +162,10 @@ const beers = [...allBeers]
       <div class="split2">
         <div>
           <span class="kicker" style="color:#5a2c14;">Flights &amp; Fills</span>
-          <h2 class="display" style="font-size:clamp(34px,4.6vw,58px);color:#1c130c;margin:14px 0 18px;line-height:0.92;">Best Tasted<br />Fresh, On The River</h2>
+          <h2 class="display" style="font-size:clamp(34px,4.6vw,58px);color:var(--ink-deep);margin:14px 0 18px;line-height:0.92;">Best Tasted<br />Fresh, On The River</h2>
           <p style="max-width:460px;font-size:17px;line-height:1.6;color:#3a1f0e;">Pull up a flight on the patio — five pours, your pick. Every one is brewed and poured right here in Hampton, with cans and growler fills to take home.</p>
           <div style="margin-top:26px;">
-            <a class="btn" href="/visit" style="background:#1c130c;color:var(--cream);">Plan Your Visit →</a>
+            <a class="btn" href="/visit" style="background:var(--ink-deep);color:var(--cream);">Plan Your Visit →</a>
           </div>
         </div>
         <div>
