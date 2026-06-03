@@ -1,3 +1,5 @@
+import { sanity } from '../lib/sanity';
+
 export interface Beer {
   name: string;
   style: string;
@@ -22,11 +24,14 @@ function lighten(hex: string): string {
   return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 }
 
-const modules = import.meta.glob('./beers/*.json', { eager: true });
+const raw = await sanity.fetch<Omit<Beer, 'canBg'>[]>(`
+  *[_type == "beer"] | order(name asc) {
+    name, style, desc, abv, ibu, tag, styleCat,
+    canColor, canLabel, lightText, onTap
+  }
+`);
 
-export const beers: Beer[] = Object.values(modules)
-  .map(m => (m as { default: Omit<Beer, 'canBg'> }).default)
-  .map(b => ({
-    ...b,
-    canBg: `linear-gradient(${lighten(b.canColor)},${b.canColor})`,
-  }));
+export const beers: Beer[] = raw.map(b => ({
+  ...b,
+  canBg: `linear-gradient(${lighten(b.canColor)},${b.canColor})`,
+}));

@@ -12,12 +12,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.13",
-    "@astrojs/markdoc": "^1.0.6",
-    "@astrojs/react": "^5.0.7",
+    "@astrojs/cloudflare": "^13.6.1",
     "@astrojs/sitemap": "^3.7.3",
-    "@keystatic/astro": "^5.1.0",
-    "@keystatic/core": "^0.5.50",
+    "@sanity/client": "^6.29.1",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.4.2",
     "react": "^19.2.7",
