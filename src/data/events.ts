@@ -14,6 +14,8 @@ export interface Event {
 
 export const events: Event[] = await sanity.fetch<Event[]>(`
   *[_type == "event"] | order(recurring asc, calDate asc) {
-    title, desc, when, day, month, calDate, cover, image, recurring
+    title, desc, when, day, month, calDate, cover,
+    "image": image.asset->url,
+    recurring
   }
 `);
