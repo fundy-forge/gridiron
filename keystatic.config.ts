@@ -1,17 +1,7 @@
 import { config, collection, fields } from '@keystatic/core';
 
-const storage = process.env.KEYSTATIC_GITHUB_CLIENT_ID
-  ? {
-      kind: 'github' as const,
-      repo: { owner: 'docfunbags', name: 'gridiron' } as const,
-    }
-  : { kind: 'local' as const };
-
 export default config({
-  storage,
-  ui: {
-    brand: { name: 'Gridiron Brewing' },
-  },
+  storage: { kind: 'local' },
 
   collections: {
     beers: collection({
@@ -20,38 +10,38 @@ export default config({
       path: 'src/data/beers/*',
       format: { data: 'json' },
       schema: {
-        name:      fields.slug({ name: { label: 'Name' } }),
-        style:     fields.text({ label: 'Style' }),
-        desc:      fields.text({ label: 'Description', multiline: true }),
-        abv:       fields.number({ label: 'ABV', validation: { min: 0, max: 20 } }),
-        ibu:       fields.number({ label: 'IBU', validation: { min: 0, max: 200 } }),
-        tag:       fields.select({
+        name: fields.slug({ name: { label: 'Name' } }),
+        style: fields.text({ label: 'Style' }),
+        desc: fields.text({ label: 'Description', multiline: true }),
+        abv: fields.number({ label: 'ABV' }),
+        ibu: fields.integer({ label: 'IBU' }),
+        tag: fields.select({
           label: 'Tag',
           options: [
             { label: 'Flagship', value: 'flagship' },
             { label: 'Seasonal', value: 'seasonal' },
-            { label: 'Guest',    value: 'guest' },
-            { label: 'Hidden',   value: 'hidden' },
+            { label: 'Guest', value: 'guest' },
+            { label: 'Hidden', value: 'hidden' },
           ],
           defaultValue: 'flagship',
         }),
-        styleCat:  fields.select({
+        styleCat: fields.select({
           label: 'Style Category',
           options: [
-            { label: 'Lager',        value: 'lager' },
-            { label: 'Amber & Pale', value: 'amber' },
-            { label: 'IPA',          value: 'ipa' },
-            { label: 'Dark',         value: 'dark' },
+            { label: 'Lager', value: 'lager' },
+            { label: 'Amber', value: 'amber' },
+            { label: 'IPA', value: 'ipa' },
+            { label: 'Dark', value: 'dark' },
           ],
           defaultValue: 'lager',
         }),
-        canColor:  fields.text({ label: 'Can Colour (hex, e.g. #d8c450)' }),
-        canLabel:  fields.array(
+        canColor: fields.text({ label: 'Can Color (hex)' }),
+        canLabel: fields.array(
           fields.text({ label: 'Line' }),
-          { label: 'Can Label Lines (2 lines)', itemLabel: p => p.value }
+          { label: 'Can Label Lines' }
         ),
-        lightText: fields.checkbox({ label: 'Light text on can', defaultValue: false }),
-        onTap:     fields.checkbox({ label: 'On Tap Now', defaultValue: false }),
+        lightText: fields.checkbox({ label: 'Light Text', defaultValue: false }),
+        onTap: fields.checkbox({ label: 'On Tap', defaultValue: false }),
       },
     }),
 
@@ -61,15 +51,15 @@ export default config({
       path: 'src/data/events/*',
       format: { data: 'json' },
       schema: {
-        title:     fields.slug({ name: { label: 'Title' } }),
-        desc:      fields.text({ label: 'Description', multiline: true }),
-        when:      fields.text({ label: 'When (e.g. Fri · 7:00 PM)' }),
-        day:       fields.text({ label: 'Day number (e.g. 05)' }),
-        month:     fields.text({ label: 'Month (e.g. JUN)' }),
-        calDate:   fields.text({ label: 'Calendar date (ISO, e.g. 2026-06-05T19:00)' }),
-        cover:     fields.text({ label: 'Cover charge (blank or "No Fee")' }),
-        image:     fields.text({ label: 'Image path (/assets/events/...)' }),
-        recurring: fields.checkbox({ label: 'Recurring weekly event', defaultValue: false }),
+        title: fields.slug({ name: { label: 'Title' } }),
+        desc: fields.text({ label: 'Description', multiline: true }),
+        when: fields.text({ label: 'When' }),
+        day: fields.text({ label: 'Day' }),
+        month: fields.text({ label: 'Month' }),
+        calDate: fields.text({ label: 'Calendar Date (ISO)' }),
+        cover: fields.text({ label: 'Cover Charge' }),
+        image: fields.text({ label: 'Image Path' }),
+        recurring: fields.checkbox({ label: 'Recurring', defaultValue: false }),
       },
     }),
 
@@ -79,8 +69,8 @@ export default config({
       path: 'src/data/community/*',
       format: { data: 'json' },
       schema: {
-        src: fields.text({ label: 'Image path (/assets/photos/...)' }),
-        alt: fields.slug({ name: { label: 'Alt text' } }),
+        alt: fields.slug({ name: { label: 'Alt Text' } }),
+        src: fields.text({ label: 'Image Path' }),
       },
     }),
   },

@@ -6,7 +6,6 @@ Built with Astro 6.4.2 + TypeScript + Tailwind CSS 4.3.0. Node >= 22.12.0 requir
 
 Live site: **gridironbrewing.com**
 GitHub: https://github.com/docfunbags/gridiron.git (branch: `main`)
-CMS: Keystatic at `/keystatic` (local dev) / GitHub OAuth (production)
 
 **Contact details** — use these wherever the brewery's info appears:
 - Phone: `(506) 832-4592` · tel link: `tel:+15068324592`
@@ -17,7 +16,7 @@ CMS: Keystatic at `/keystatic` (local dev) / GitHub OAuth (production)
 
 ## Workflow
 
-**Before starting work:** always `git pull` first — CMS edits commit directly to GitHub and need to be pulled down before making local changes.
+**Before starting work:** always `git pull` first.
 
 **After making changes:** commit and push. Netlify detects the push and auto-deploys (1–2 min).
 
@@ -29,19 +28,19 @@ git commit -m "description"
 git push
 ```
 
-If there's a merge conflict, it's almost always a `src/data/*/` entry file edited via CMS at the same time. Resolve by keeping the CMS version of content and re-applying the code change.
+If there's a merge conflict in `src/data/*/` files, resolve by keeping the correct content version and re-applying the code change.
 
 ---
 
-## Content Management (Keystatic)
+## Content Management
 
-Content is managed through `/keystatic` on the live site (requires GitHub OAuth login). Each entry is stored as an individual JSON file. Never hardcode content that belongs in these directories:
+All content is stored as individual JSON files — edit them directly in the repo. Never hardcode content that belongs in these directories:
 
-| CMS Collection | Data Directory | Used By |
+| Collection | Data Directory | Used By |
 |---|---|---|
-| 🍺 Beer List | `src/data/beers/*.json` | `beers.astro`, `OnTap.astro` |
-| 📅 Events | `src/data/events/*.json` | `events.astro`, `Events.astro` |
-| 📸 Community Photos | `src/data/community/*.json` | `gallery.astro`, `Community.astro` |
+| Beer List | `src/data/beers/*.json` | `beers.astro`, `OnTap.astro` |
+| Events | `src/data/events/*.json` | `events.astro`, `Events.astro` |
+| Community Photos | `src/data/community/*.json` | `gallery.astro`, `Community.astro` |
 
 Data modules:
 - `src/data/beers.ts` — globs `beers/*.json`, computes `canBg` (gradient from `canColor`), exports `beers[]`
@@ -49,8 +48,6 @@ Data modules:
 - `src/data/community.ts` — globs `community/*.json`, exports `photos[]`
 
 Event slugs: non-recurring are date-prefixed (`2026-06-05-event-name.json`); recurring are title-slugified only.
-
-**Production setup** requires two Cloudflare environment variables: `KEYSTATIC_GITHUB_CLIENT_ID` and `KEYSTATIC_GITHUB_CLIENT_SECRET` (from a GitHub OAuth App). Without these, the `/keystatic` admin is local-only and will not function on Cloudflare Pages.
 
 ---
 
@@ -198,7 +195,7 @@ The `_unused/` folder lives at the project root (not in `public/`) so unused ass
 
 ## Rules & Conventions
 
-**Tap count is always 12.** There are 12 physical tap handles. Never derive this number dynamically from the `onTap` flag in `beers.json` — that flag is for CMS filtering only. Hardcode as `12` in stats and `twelve` in prose.
+**Tap count is always 12.** There are 12 physical tap handles. Never derive this number dynamically from the `onTap` flag in beer JSON files — that flag is for UI filtering only. Hardcode as `12` in stats and `twelve` in prose.
 
 **The `onTap` flag** in `beers.json` controls display order and on-tap indicators in the UI. It does not represent the physical tap count.
 
@@ -208,7 +205,7 @@ The `_unused/` folder lives at the project root (not in `public/`) so unused ass
 - `lightText` — true if can is very dark and needs light-coloured label text
 - `tag` — `flagship` | `seasonal` | `guest` | `hidden`
 
-**Community photos** cycle client-side: 6 slots shown, one random slot crossfades every 4.5 seconds through the full pool in `community.json`. Pool is managed via Decap CMS.
+**Community photos** cycle client-side: 6 slots shown, one random slot crossfades every 4.5 seconds through the full pool in `src/data/community/*.json`.
 
 **Committing:** use Conventional Commits format. Always include `Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>` in commit messages.
 
@@ -247,10 +244,10 @@ src/
     Footer.astro      — Site footer
     Navbar.astro      — Sticky nav
   data/
-    beers.json        — Beer list (CMS-managed)
-    beers.ts          — Imports beers.json, computes canBg
-    events.json       — Events (CMS-managed)
-    community.json    — Community photo pool (CMS-managed)
+    beers/*.json      — Beer entries (one file per beer)
+    beers.ts          — Globs beers/*.json, computes canBg
+    events/*.json     — Event entries (one file per event)
+    community/*.json  — Community photo entries
   styles/
     global.css        — All design tokens, band classes, component styles
   layouts/
@@ -259,9 +256,6 @@ src/
     lightbox.ts       — Shared lightbox open/close (focus management, aria-hidden, scroll lock)
     constants.ts      — Shared constants: siteUrl — do not redeclare this inline anywhere
 public/
-  admin/
-    config.yml        — Decap CMS configuration
-    index.html        — CMS entry point
   assets/
     photos/           — Community and general photos
     logos/            — Gridiron logo variants
