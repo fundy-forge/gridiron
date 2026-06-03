@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import BeerTag from '../components/BeerTag.astro';
 import { beers as allBeers } from '../data/beers';
 
 // Filter out hidden beers, On Tap first
@@ -69,9 +70,7 @@ const beers = [...allBeers]
               <div class="spec"><span>ABV</span><b>{beer.abv}%</b></div>
               <div class="spec"><span>IBU</span><b>{beer.ibu}</b></div>
               <div class="tag-stack">
-                <span class={`tag${beer.tag === 'seasonal' ? ' seasonal' : beer.tag === 'guest' ? ' guest' : ''}`}>
-                  {beer.tag === 'seasonal' ? 'Seasonal' : beer.tag === 'guest' ? 'Guest' : 'Flagship'}
-                </span>
+                <BeerTag tag={beer.tag} />
                 <span class={`tag${beer.onTap ? ' ontap' : ' ask'}`}>{beer.onTap ? 'On Tap' : 'Ask Us'}</span>
               </div>
             </div>

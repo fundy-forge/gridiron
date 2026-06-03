@@ -17,6 +17,12 @@
   --rust: #8b3a2b;
   --red: #d83a29;
   --line: rgba(33, 23, 17, 0.16);
+  --cream-dim: rgba(250, 243, 228, 0.74);
+  --tag-guest-bg: #2a5c8a;
+  --tag-guest-fg: #d4eaf7;
+  --tag-ontap-bg: #2a6e3f;
+  --tag-ontap-fg: #d4f0df;
+  --nav-height: 80px;
   --maxw: 1280px;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
@@ -169,10 +175,10 @@ img { display: block; max-width: 100%; }
 .beer-specs .spec b { color: var(--rust); font-size: 14px; }
 .beer-specs .tag { margin-left: auto; align-self: flex-start; font-size: 9px; letter-spacing: .12em; background: var(--amber); color: var(--ink-deep); padding: 3px 7px; border-radius: 2px; }
 .beer-specs .tag.seasonal { background: var(--rust); color: var(--cream); }
-.beer-specs .tag.guest { background: #2a5c8a; color: #d4eaf7; }
+.beer-specs .tag.guest { background: var(--tag-guest-bg); color: var(--tag-guest-fg); }
 .beer-specs .tag-stack { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
 .beer-specs .tag-stack .tag { margin-left: 0; }
-.beer-specs .tag.ontap { background: #2a6e3f; color: #d4f0df; }
+.beer-specs .tag.ontap { background: var(--tag-ontap-bg); color: var(--tag-ontap-fg); }
 .beer-specs .tag.ask { background: rgba(33,23,17,.12); color: var(--ink-3); }
 .beer-card.off-tap { opacity: 0.6; }
 .beer-card.off-tap .beer-can { filter: grayscale(40%); }
@@ -229,7 +235,7 @@ img { display: block; max-width: 100%; }
 /* ============================================================
    TAP LIST FILTER
    ============================================================ */
-.tap-controls { position: sticky; top: 80px; z-index: 30; background: rgba(241,230,208,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.tap-controls { position: sticky; top: var(--nav-height); z-index: 30; background: rgba(241,230,208,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 .tap-controls .inner { max-width: var(--maxw); margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; }
 .filter-group { display: flex; align-items: center; gap: 10px; }
 .filter-group > span { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
@@ -239,6 +245,11 @@ img { display: block; max-width: 100%; }
 .chip.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
 .tap-count { margin-left: auto; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
 .tap-count b { color: var(--rust); }
+
+/* ---------- price callout (OnTap) ---------- */
+.price-callout { text-align: center; }
+.price-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--amber-bright); margin: 0 0 4px; }
+.price-amount { font-size: 26px; font-family: 'Anton', sans-serif; color: var(--cream); margin: 0; line-height: 1; }
 
 /* ============================================================
    DRINKS LIST

@@ -85,15 +85,16 @@ const breadcrumb = pageLabel ? {
     <meta property="og:site_name" content="Gridiron Brewing" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content="Small-batch craft beer brewed in Hampton, New Brunswick. Cold pints, cozy place." />
-    <meta property="og:image" content="/assets/logos/logo-favicon.png" />
+    <meta property="og:image" content={`${siteUrl}/assets/logos/logo-favicon.png`} />
     <meta property="og:url" content={`${siteUrl}${pathname}`} />
     <!-- Twitter/X card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content="Small-batch craft beer brewed in Hampton, New Brunswick. Cold pints, cozy place." />
-    <meta name="twitter:image" content="/assets/logos/logo-favicon.png" />
+    <meta name="twitter:image" content={`${siteUrl}/assets/logos/logo-favicon.png`} />
     <!-- Theme colour for mobile browsers -->
     <meta name="theme-color" content="#c17a2b" />
+    <link rel="canonical" href={`${siteUrl}${pathname}`} />
     <!-- Structured data -->
     <script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />
     {breadcrumb && <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />}

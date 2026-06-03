@@ -38,7 +38,7 @@ All content is managed through `/admin` on the live site. CMS edits commit direc
 | 📅 Events | `src/data/events.json` | `Events.astro` |
 | 📸 Community Photos | `src/data/community.json` | `Community.astro` |
 
-`src/data/beers.ts` imports `beers.json` and computes `canBg` (gradient from `canColor`) and aliases `cn`/`light` — this is the single source of truth for beer data consumed by components.
+`src/data/beers.ts` imports `beers.json` and computes `canBg` (gradient from `canColor`) — this is the single source of truth for beer data consumed by components.
 
 ---
 
@@ -192,7 +192,7 @@ The `_unused/` folder lives at the project root (not in `public/`) so unused ass
 - `lightText` — true if can is very dark and needs light-coloured label text
 - `tag` — `flagship` | `seasonal` | `guest` | `hidden`
 
-**Community photos** cycle client-side: 6 slots shown, one random slot crossfades every 3 seconds through the full pool in `community.json`. Pool is managed via Decap CMS.
+**Community photos** cycle client-side: 6 slots shown, one random slot crossfades every 4.5 seconds through the full pool in `community.json`. Pool is managed via Decap CMS.
 
 **Committing:** use Conventional Commits format. Always include `Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>` in commit messages.
 
@@ -232,7 +232,7 @@ src/
     Navbar.astro      — Sticky nav
   data/
     beers.json        — Beer list (CMS-managed)
-    beers.ts          — Imports beers.json, computes canBg/cn/light
+    beers.ts          — Imports beers.json, computes canBg
     events.json       — Events (CMS-managed)
     community.json    — Community photo pool (CMS-managed)
   styles/
