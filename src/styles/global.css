@@ -145,12 +145,12 @@ img { display: block; max-width: 100%; }
 .beer-specs .s { display: flex; flex-direction: column; gap: 1px; }
 .beer-specs .s span { font-size: 11px; letter-spacing: .06em; color: var(--ink-3); }
 .beer-specs .s b { color: var(--rust); font-size: 14px; }
-.beer-specs .tag { margin-left: auto; align-self: flex-start; font-size: 9px; letter-spacing: .12em; background: var(--amber); color: #1c130c; padding: 3px 7px; border-radius: 2px; }
+.beer-specs .tag { margin-left: auto; align-self: flex-start; font-size: 10px; letter-spacing: .12em; background: var(--amber); color: #1c130c; padding: 4px 9px; border-radius: 2px; }
 .beer-specs .tag.seasonal { background: var(--rust); color: var(--cream); }
 .beer-specs .tag.guest { background: #2a5c8a; color: #d4eaf7; }
 .beer-specs .tag-stack { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
 .beer-specs .tag-stack .tag { margin-left: 0; }
-.beer-specs .tag.ontap-tag { background: #2a6e3f; color: #d4f0df; font-size: 10px; padding: 4px 10px; }
+.beer-specs .tag.ontap-tag { background: #2a6e3f; color: #d4f0df; }
 .beer-specs .tag.ask-us { background: rgba(33,23,17,.12); color: var(--ink-3); }
 .beer-card.off-tap { opacity: 0.6; }
 .beer-card.off-tap .beer-can { filter: grayscale(40%); }
