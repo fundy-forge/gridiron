@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { siteUrl } from '../utils/constants';
 
 interface Props {
   title?: string;
@@ -10,7 +11,6 @@ interface Props {
 
 const { title = 'Gridiron Brewing — Hampton, New Brunswick', activeNav } = Astro.props;
 
-const siteUrl = 'https://gridironbrewing.ca';
 const pathname = Astro.url.pathname;
 
 const localBusiness = {
@@ -85,13 +85,13 @@ const breadcrumb = pageLabel ? {
     <meta property="og:site_name" content="Gridiron Brewing" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content="Small-batch craft beer brewed in Hampton, New Brunswick. Cold pints, cozy place." />
-    <meta property="og:image" content={`${siteUrl}/assets/logos/logo-favicon.png`} />
+    <meta property="og:image" content={`${siteUrl}/assets/photos/crowded-bar.webp`} />
     <meta property="og:url" content={`${siteUrl}${pathname}`} />
     <!-- Twitter/X card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content="Small-batch craft beer brewed in Hampton, New Brunswick. Cold pints, cozy place." />
-    <meta name="twitter:image" content={`${siteUrl}/assets/logos/logo-favicon.png`} />
+    <meta name="twitter:image" content={`${siteUrl}/assets/photos/crowded-bar.webp`} />
     <!-- Theme colour for mobile browsers -->
     <meta name="theme-color" content="#c17a2b" />
     <link rel="canonical" href={`${siteUrl}${pathname}`} />

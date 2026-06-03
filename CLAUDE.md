@@ -137,6 +137,8 @@ All magic colours must be tokens. Never hardcode hex values that already exist a
 | `--rust` | `#8b3a2b` | Stats, seasonal tags, accent text |
 | `--red` | `#d83a29` | High-contrast accent on dark backgrounds (hero headline) |
 | `--line` | `rgba(33,23,17,.16)` | All borders and dividers |
+| `--cream-dim` | `rgba(250,243,228,.74)` | Dimmed body text on dark band sections |
+| `--cream-muted` | `rgba(250,243,228,.82)` | Slightly less dimmed text on dark backgrounds |
 
 ---
 
@@ -170,6 +172,8 @@ All images must be WebP before committing. Never commit raw PNGs or JPGs (except
 1. Drop new images into the appropriate `public/assets/` subfolder
 2. Run `node scripts/optimize-images.mjs` — converts to WebP, resizes logos, deletes originals
 3. Update any `src` references to use `.webp`
+
+**Social card image:** `og:image` and `twitter:image` in Layout.astro currently point to `crowded-bar.webp` as a fallback. Ideally replace with a dedicated 1200×628 branded image at `public/assets/logos/og-card.webp` when one is available.
 
 Naming conventions:
 - **Logos** — role-based: `logo-nav.webp`, `logo-hero.webp`, `logo-footer.webp`, `logo-favicon.png`
@@ -239,6 +243,9 @@ src/
     global.css        — All design tokens, band classes, component styles
   layouts/
     Layout.astro      — Base HTML shell, imports Navbar + Footer
+  utils/
+    lightbox.ts       — Shared lightbox open/close (focus management, aria-hidden, scroll lock)
+    constants.ts      — Shared constants: siteUrl — do not redeclare this inline anywhere
 public/
   admin/
     config.yml        — Decap CMS configuration

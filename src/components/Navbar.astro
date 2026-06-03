@@ -51,5 +51,14 @@ const navLinks = [
         menuBtn.setAttribute('aria-expanded', 'false');
       })
     );
+
+    document.addEventListener('click', (e) => {
+      if (!navLinks.classList.contains('open')) return;
+      const header = document.querySelector('.site-header');
+      if (header && !header.contains(e.target as Node)) {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
   }
 </script>

@@ -1,11 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import eventsData from '../data/events.json';
+import { siteUrl } from '../utils/constants';
 
 const upcoming = eventsData.events.filter(e => !e.recurring);
 const recurring = eventsData.events.filter(e => e.recurring);
-
-const siteUrl = 'https://gridironbrewing.ca';
 const eventSchemas = upcoming
   .filter(ev => ev.calDate && new Date(ev.calDate) > new Date())
   .map(ev => {

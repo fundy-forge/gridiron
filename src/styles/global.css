@@ -17,7 +17,8 @@
   --rust: #8b3a2b;
   --red: #d83a29;
   --line: rgba(33, 23, 17, 0.16);
-  --cream-dim: rgba(250, 243, 228, 0.74);
+  --cream-dim:   rgba(250, 243, 228, 0.74);
+  --cream-muted: rgba(250, 243, 228, 0.82);
   --tag-guest-bg: #2a5c8a;
   --tag-guest-fg: #d4eaf7;
   --tag-ontap-bg: #2a6e3f;
@@ -145,7 +146,7 @@ img { display: block; max-width: 100%; }
 .hero .inner { max-width: 1000px; margin: 0 auto; padding: 48px 32px 56px; display: flex; flex-direction: column; align-items: center; }
 .hero h1 { font-family: 'Anton', sans-serif; font-weight: 400; font-size: clamp(72px, 10vw, 148px); line-height: .9; text-transform: uppercase; margin-top: 6px; color: var(--cream); }
 .hero h1 .rust { color: var(--red); }
-.hero .kicker { color: var(--amber-bright); }
+.hero .kicker { color: var(--amber-bright); font-size: 14px; }
 .hero .sub { max-width: 560px; font-size: 18px; line-height: 1.6; color: rgba(250,243,228,.72); margin: 24px 0 32px; }
 .hero .cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 .hero .btn-ghost { color: var(--cream); }

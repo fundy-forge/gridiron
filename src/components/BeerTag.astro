@@ -1,7 +1,10 @@
 ---
 interface Props { tag: 'flagship' | 'seasonal' | 'guest' | 'hidden'; }
 const { tag } = Astro.props;
-const label = tag === 'seasonal' ? 'Seasonal' : tag === 'guest' ? 'Guest' : 'Flagship';
-const cls   = tag === 'seasonal' ? ' seasonal' : tag === 'guest' ? ' guest' : '';
+if (tag === 'hidden') return;
+const labelMap: Record<string, string> = { seasonal: 'Seasonal', guest: 'Guest', flagship: 'Flagship' };
+const clsMap:   Record<string, string> = { seasonal: ' seasonal', guest: ' guest', flagship: '' };
+const label = labelMap[tag] ?? 'Flagship';
+const cls   = clsMap[tag]  ?? '';
 ---
 <span class={`tag${cls}`}>{label}</span>

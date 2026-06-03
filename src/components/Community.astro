@@ -129,13 +129,16 @@ const initial = photos.slice(0, 6);
   const mosaic      = document.getElementById('community-mosaic') as HTMLElement | null;
   const pool: { src: string; alt: string }[] = JSON.parse(mosaic?.dataset.pool || '[]');
 
-  let paused = false;
+  let hovering = false;
+  let lbOpen   = false;
+
+  const paused = () => hovering || lbOpen;
 
   if (mosaic) {
     mosaic.querySelectorAll('.mosaic-item').forEach((item) => {
       const activate = () => {
         if (!lightbox || !lightboxImg) return;
-        paused = true;
+        lbOpen = true;
         openLightbox(lightbox, lightboxImg, item.getAttribute('data-src') || '', item.getAttribute('data-alt') || '');
       };
       item.addEventListener('click', activate);
@@ -146,17 +149,17 @@ const initial = photos.slice(0, 6);
         }
       });
     });
-    mosaic.addEventListener('mouseenter', () => { paused = true; });
-    mosaic.addEventListener('mouseleave', () => { paused = false; });
+    mosaic.addEventListener('mouseenter', () => { hovering = true; });
+    mosaic.addEventListener('mouseleave', () => { hovering = false; });
   }
 
   lightbox?.addEventListener('click', () => {
     if (!lightbox) return;
     closeLightbox(lightbox);
-    paused = false;
+    lbOpen = false;
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox) { closeLightbox(lightbox); paused = false; }
+    if (e.key === 'Escape' && lightbox) { closeLightbox(lightbox); lbOpen = false; }
   });
 
   // ── Cycling ───────────────────────────────────────────────
@@ -166,7 +169,7 @@ const initial = photos.slice(0, 6);
     let queue: typeof pool = [];
 
     setInterval(() => {
-      if (paused) return;
+      if (paused()) return;
 
       const slot = items[slotIdx % items.length];
       slotIdx++;
