@@ -15,7 +15,10 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     ssr: {
-      noExternal: ['@keystatic/core', '@keystatic/astro'],
+      noExternal: ['@keystatic/core', '@keystatic/astro', 'react', 'react-dom'],
+    },
+    optimizeDeps: {
+      exclude: ['@keystatic/astro', '@keystatic/core'],
     },
   },
 });
