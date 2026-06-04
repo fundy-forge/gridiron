@@ -75,6 +75,7 @@ const description = 'Visit Gridiron Brewing at 1051 Main Street, Hampton, NB. Tw
               ))}
             </table>
             <p class="hours-note">{activeSchedule.holidayNote}</p>
+            <a class="hours-ig" href="https://www.instagram.com/gridironbrewing/" target="_blank" rel="noopener">@gridironbrewing →</a>
           </>
         )}
       </div>
@@ -169,6 +170,8 @@ const description = 'Visit Gridiron Brewing at 1051 Main Street, Hampton, NB. Tw
 
 <style>
   .cream-ghost { color: var(--cream); }
+  .hours-ig { display: inline-block; margin-top: 10px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--amber-bright); text-decoration: none; transition: color .15s; }
+  .hours-ig:hover { color: var(--cream); }
   .food-grid-spacing { margin-bottom: 48px; }
   iframe { border: 0; display: block; }
 </style>
