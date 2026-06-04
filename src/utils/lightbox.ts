@@ -77,8 +77,13 @@ export function bindLightbox(
     });
   });
 
+  // Suppress the synthetic click that follows a swipe so we don't close the
+  // lightbox right after the user advanced a slide.
+  let swipeJustHandled = false;
+
   lb.addEventListener('click', (e) => {
     if (e.target === prevBtn || e.target === nextBtn) return;
+    if (swipeJustHandled) { swipeJustHandled = false; return; }
     close();
   });
 
@@ -91,6 +96,31 @@ export function bindLightbox(
       e.stopPropagation();
       setSlide(current + 1);
     });
+
+    // Touch swipe — left = next, right = prev
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchActive = false;
+
+    lb.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchActive = true;
+    }, { passive: true });
+
+    lb.addEventListener('touchend', (e) => {
+      if (!touchActive || e.changedTouches.length !== 1) return;
+      touchActive = false;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      // Treat as a swipe only if it's mostly horizontal and >50px
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        swipeJustHandled = true;
+        if (dx < 0) setSlide(current + 1);
+        else setSlide(current - 1);
+      }
+    }, { passive: true });
   }
 
   document.addEventListener('keydown', (e) => {
