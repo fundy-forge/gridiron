@@ -2,6 +2,11 @@
 dist/
 # generated types
 .astro/
+# Cloudflare wrangler cache
+.wrangler/
+# Sanity studio build artifacts
+studio/dist/
+studio/.sanity/
 
 # dependencies
 node_modules/
