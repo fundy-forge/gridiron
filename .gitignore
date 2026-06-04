@@ -27,3 +27,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# personal notes (local only — not part of project history)
+session-notes-*.md
+roadmap-*.md
+webdev-tips-*.md
