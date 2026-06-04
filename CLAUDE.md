@@ -2,10 +2,10 @@
 
 ## Project Overview
 Static brewery website for **Gridiron Brewing**, Hampton, New Brunswick.
-Built with Astro 6.4.2 + TypeScript + Tailwind CSS 4.3.0. Node >= 22.12.0 required.
+Built with Astro 6.4.2 + TypeScript. Node >= 22.12.0 required.
 
 Live site: **gridironbrewing.com**
-GitHub: https://github.com/docfunbags/gridiron.git (branch: `main`)
+GitHub: https://github.com/fundy-forge/gridiron.git (branch: `main`)
 
 **Contact details** — use these wherever the brewery's info appears:
 - Phone: `(506) 832-4592` · tel link: `tel:+15068324592`
@@ -52,6 +52,8 @@ Required env: `SANITY_PROJECT_ID`, `SANITY_DATASET`. Set in `.env` locally and C
 ---
 
 ## Design Philosophy
+
+**IMPORTANT — The Gridiron Name:** "Gridiron" does not refer to football. The brewery is named after the Gridiron, a section of rapids on the Kennebecasis River near Hampton, NB. Do not make football-themed suggestions, copy, or design choices.
 
 Warm, unpretentious, rooted in place. The site should feel like the taproom: dark wood, amber light, hand-lettered signage. Not a tech startup, not a chain. Every design choice should reinforce that this is a local, community brewery on a New Brunswick river.
 

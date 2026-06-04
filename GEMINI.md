@@ -2,7 +2,7 @@
 
 ## 🛠 Project Overview
 Static brewery website for **Gridiron Brewing**, Hampton, New Brunswick.
-**Stack:** Astro 6.4.2 · TypeScript · Tailwind CSS 4.3.0 · Sanity CMS · Cloudflare Pages.
+**Stack:** Astro 6.4.2 · TypeScript · Sanity CMS · Cloudflare Pages.
 
 ---
 
@@ -22,6 +22,8 @@ To ensure the highest quality and respect for the brewery's "rooted in place" ph
 ---
 
 ## 🎨 Design Philosophy
+**IMPORTANT — The Gridiron Name:** "Gridiron" does not refer to football. The brewery is named after the Gridiron, a section of rapids on the Kennebecasis River near Hampton, NB. Do not make football-themed suggestions, copy, or design choices.
+
 **Warm, unpretentious, rooted in place.**
 The site should feel like the Gridiron taproom: dark wood, amber light, and hand-lettered signage. Every design choice must reinforce that this is a local, community-focused brewery on the Kennebecasis River.
 
