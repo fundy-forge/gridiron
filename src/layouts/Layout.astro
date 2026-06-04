@@ -79,6 +79,10 @@ const localBusiness = {
   ],
 };
 
+const pathname = Astro.url.pathname;
+const canonicalUrl = `${siteUrl}${pathname}`;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+
 const pageLabels: Record<string, string> = {
   '/beers': 'Drinks',
   '/events': 'Events',
