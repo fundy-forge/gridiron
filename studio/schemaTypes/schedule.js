@@ -11,6 +11,13 @@ export const schedule = {
       validation: Rule => Rule.required()
     },
     {
+      name: 'heroSummary',
+      title: 'Hero Summary',
+      type: 'string',
+      description: 'Concise summary for the homepage hero (e.g. "Tue–Sun" or "Open Daily").',
+      initialValue: 'Tue–Sun'
+    },
+    {
       name: 'days',
       title: 'Daily Hours',
       type: 'array',

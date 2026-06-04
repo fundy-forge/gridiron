@@ -2,6 +2,7 @@ import { sanity } from '../lib/sanity';
 
 export interface Schedule {
   title: string;
+  heroSummary: string;
   holidayNote: string;
   days: {
     day: string;
@@ -18,6 +19,7 @@ export async function fetchActiveSchedule(): Promise<Schedule | null> {
       *[_type == "siteSettings"][0] {
         "active": activeSchedule-> {
           title,
+          heroSummary,
           holidayNote,
           days[] {
             day,

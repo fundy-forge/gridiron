@@ -3,6 +3,7 @@ import MailIcon from './icons/MailIcon.astro';
 import InstagramIcon from './icons/InstagramIcon.astro';
 import FacebookIcon from './icons/FacebookIcon.astro';
 import UntappdIcon from './icons/UntappdIcon.astro';
+import { activeSchedule } from '../data/settings';
 ---
 
 <footer class="site-footer">
@@ -16,7 +17,18 @@ import UntappdIcon from './icons/UntappdIcon.astro';
     <div class="foot-col">
       <h4>Visit</h4>
       <p>1051 Main Street<br />Hampton, New Brunswick</p>
-      <a href="/visit">Hours &amp; Directions</a>
+      {activeSchedule ? (
+        <div class="foot-hours">
+          {activeSchedule.days.map(h => (
+            <p class="foot-hour-row">
+              <span>{h.day.slice(0,3)}</span>
+              <b>{h.isClosed ? 'Closed' : h.closes.includes('PM') ? h.closes.split(':')[0] + (h.showIsh ? 'ish' : '') : h.closes}</b>
+            </p>
+          ))}
+        </div>
+      ) : (
+        <a href="/visit">Hours &amp; Directions</a>
+      )}
       <a href="tel:+15068324592">(506) 832-4592</a>
     </div>
     <div class="foot-col">
@@ -53,3 +65,9 @@ import UntappdIcon from './icons/UntappdIcon.astro';
     <span>Built by <a href="https://www.fundyforge.ca" target="_blank" rel="noopener" class="foot-credit">Fundy Forge</a></span>
   </div>
 </footer>
+
+<style>
+  .foot-hours { margin: 12px 0; border-top: 1px solid rgba(250,243,228,.1); padding-top: 12px; }
+  .foot-hour-row { display: flex; justify-content: space-between; gap: 12px; font-family: 'DM Mono', monospace; font-size: 11px !important; margin-bottom: 4px !important; color: rgba(250,243,228,.5) !important; text-transform: uppercase; }
+  .foot-hour-row b { color: var(--amber-bright); font-weight: 500; }
+</style>

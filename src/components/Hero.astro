@@ -1,5 +1,8 @@
 ---
 import { TAP_COUNT } from '../utils/constants';
+import { activeSchedule } from '../data/settings';
+
+const openSummary = activeSchedule?.heroSummary || 'Tue–Sun';
 ---
 
 <section class="hero grain">
@@ -15,7 +18,7 @@ import { TAP_COUNT } from '../utils/constants';
       <a class="btn btn-ghost" href="/visit">Visit the Taproom</a>
     </div>
     <div class="footstrip">
-      <span>Open <b>Tue–Sun</b></span>
+      <span>Open <b>{openSummary}</b></span>
       <span><b>{TAP_COUNT}</b> Taps Flowing</span>
       <span>Dog <b>Friendly</b></span>
       <span>Patio <b>on the River</b></span>
