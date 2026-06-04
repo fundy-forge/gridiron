@@ -10,7 +10,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const ROOT = dirname(fileURLToPath(new URL('..', import.meta.url)));
+const ROOT = dirname(dirname(fileURLToPath(new URL(import.meta.url))));
 
 const client = createClient({
   projectId: process.env.SANITY_PROJECT_ID,
@@ -31,9 +31,9 @@ function slugify(str) {
 }
 
 async function migrate() {
-  const beers = readDir(join(ROOT, 'src/data/beers'));
-  const events = readDir(join(ROOT, 'src/data/events'));
-  const photos = readDir(join(ROOT, 'src/data/community'));
+  const beers = readDir(join(ROOT, 'scripts/migration-source/beers'));
+  const events = readDir(join(ROOT, 'scripts/migration-source/events'));
+  const photos = readDir(join(ROOT, 'scripts/migration-source/community'));
 
   console.log(`Migrating ${beers.length} beers, ${events.length} events, ${photos.length} photos...`);
 
@@ -71,7 +71,6 @@ async function migrate() {
       month: e.month,
       calDate: e.calDate,
       cover: e.cover ?? '',
-      image: e.image ?? '',
       recurring: e.recurring ?? false,
     });
   }
@@ -81,9 +80,6 @@ async function migrate() {
       _type: 'communityPhoto',
       _id: `photo-${slugify(p.alt)}`,
       alt: p.alt,
-      // image asset must be uploaded separately via Sanity Studio
-      // src kept here for reference during manual upload
-      legacySrc: p.src,
     });
   }
 
