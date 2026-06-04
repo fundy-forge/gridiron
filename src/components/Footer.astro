@@ -3,6 +3,7 @@ import MailIcon from './icons/MailIcon.astro';
 import InstagramIcon from './icons/InstagramIcon.astro';
 import FacebookIcon from './icons/FacebookIcon.astro';
 import UntappdIcon from './icons/UntappdIcon.astro';
+import TikTokIcon from './icons/TikTokIcon.astro';
 import { activeSchedule } from '../data/settings';
 
 function fmtTime(t: string | undefined, ish = false) {
@@ -21,7 +22,6 @@ function fmtTime(t: string | undefined, ish = false) {
       <a class="brand" href="/">
         <img class="footlogo" src="/assets/logos/logo-footer.webp" alt="Gridiron Brewing — Hampton, NB" width="379" height="300" />
       </a>
-      <p class="foot-blurb">Small-batch craft beer brewed in Hampton, New Brunswick.</p>
       <div class="foot-contact">
         <p>1051 Main Street<br />Hampton, New Brunswick</p>
         <a href="tel:+15068324592">(506) 832-4592</a>
@@ -44,33 +44,41 @@ function fmtTime(t: string | undefined, ish = false) {
       )}
     </div>
 
-    <div class="foot-col">
-      <h4>Explore</h4>
-      <a href="/beers">Tap List</a>
-      <a href="/events">Events</a>
-      <a href="/gallery">Photo Gallery</a>
-      <a href="/#story">Our Story</a>
-      <a href="/visit#private">Private Hire</a>
-    </div>
-
-    <div class="foot-col">
-      <h4>Follow</h4>
-      <a class="foot-social" href="https://www.instagram.com/gridironbrewing/" target="_blank" rel="noopener">
-        <InstagramIcon />
-        Instagram
-      </a>
-      <a class="foot-social" href="https://www.facebook.com/gridironbrewing/" target="_blank" rel="noopener">
-        <FacebookIcon />
-        Facebook
-      </a>
-      <a class="foot-social" href="https://untappd.com/MatchstickBeerFactory" target="_blank" rel="noopener">
-        <UntappdIcon />
-        Untappd
-      </a>
-      <a class="foot-social" href="mailto:info@gridironbrewing.com">
-        <MailIcon size={15} />
-        info@gridironbrewing.com
-      </a>
+    <div class="foot-right">
+      <div class="foot-right-cols">
+        <div class="foot-col">
+          <h4>Explore</h4>
+          <a href="/beers">Tap List</a>
+          <a href="/events">Events</a>
+          <a href="/gallery">Photo Gallery</a>
+          <a href="/#story">Our Story</a>
+          <a href="/visit#private">Private Hire</a>
+        </div>
+        <div class="foot-col">
+          <h4>Follow</h4>
+          <a class="foot-social" href="https://www.instagram.com/gridironbrewing/" target="_blank" rel="noopener">
+            <InstagramIcon />
+            Instagram
+          </a>
+          <a class="foot-social" href="https://www.facebook.com/gridironbrewing/" target="_blank" rel="noopener">
+            <FacebookIcon />
+            Facebook
+          </a>
+          <a class="foot-social" href="https://www.tiktok.com/@gridironbeer" target="_blank" rel="noopener">
+            <TikTokIcon />
+            TikTok
+          </a>
+          <a class="foot-social" href="https://untappd.com/MatchstickBeerFactory" target="_blank" rel="noopener">
+            <UntappdIcon />
+            Untappd
+          </a>
+          <a class="foot-social" href="mailto:info@gridironbrewing.com">
+            <MailIcon size={15} />
+            info@gridironbrewing.com
+          </a>
+        </div>
+      </div>
+      <p class="foot-tagline">Small-batch craft beer brewed in Hampton, New Brunswick.</p>
     </div>
 
   </div>
@@ -82,10 +90,10 @@ function fmtTime(t: string | undefined, ish = false) {
 </footer>
 
 <style>
-  .foot-contact { margin-top: 28px; }
+  .foot-contact { margin-top: 6px; }
   .foot-contact p, .foot-contact a { display: block; font-size: 14px; color: var(--cream); text-decoration: none; margin-bottom: 9px; line-height: 1.5; }
   .foot-contact a:hover { color: var(--amber-bright); }
-  .foot-hours { margin: 0; }
-  .foot-hour-row { display: flex; justify-content: space-between; gap: 12px; font-family: 'DM Mono', monospace; font-size: 11px !important; margin-bottom: 4px !important; color: rgba(250,243,228,.5) !important; text-transform: uppercase; }
-  .foot-hour-row b { color: var(--amber-bright); font-weight: 500; }
+  .foot-tagline { font-size: 14px; color: rgba(250,243,228,.6); line-height: 1.6; margin: 24px 0 0; }
+  .foot-hour-row { display: flex; justify-content: space-between; gap: 12px; max-width: 160px; }
+  .foot-hour-row b { color: inherit; font-weight: 400; }
 </style>
