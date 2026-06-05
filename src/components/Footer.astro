@@ -29,7 +29,7 @@ function fmtTime(t: string | undefined, ish = false) {
     </div>
 
     <div class="foot-col">
-      <h4>Hours</h4>
+      <h3>Hours</h3>
       {activeSchedule ? (
         <div class="foot-hours">
           {activeSchedule.days.map(h => (
@@ -47,7 +47,7 @@ function fmtTime(t: string | undefined, ish = false) {
     <div class="foot-right">
       <div class="foot-right-cols">
         <div class="foot-col">
-          <h4>Explore</h4>
+          <h3>Explore</h3>
           <a href="/beers">Tap List</a>
           <a href="/events">Events</a>
           <a href="/gallery">Photo Gallery</a>
@@ -55,7 +55,7 @@ function fmtTime(t: string | undefined, ish = false) {
           <a href="/visit#private">Private Hire</a>
         </div>
         <div class="foot-col">
-          <h4>Follow</h4>
+          <h3>Follow</h3>
           <a class="foot-social" href="https://www.instagram.com/gridironbrewing/" target="_blank" rel="noopener">
             <InstagramIcon />
             Instagram
@@ -86,7 +86,7 @@ function fmtTime(t: string | undefined, ish = false) {
     <span>© {new Date().getFullYear()} Gridiron Brewing</span>
     <span>Please drink responsibly · 19+</span>
     <a href="https://www.fundyforge.ca" target="_blank" rel="noopener" class="foot-credit">
-      <img src="/assets/logos/fundyforge-mark.svg" alt="Fundy Forge" class="foot-credit-icon" />
+      <img src="/assets/logos/fundyforge-mark.svg" alt="" width="34" height="20" class="foot-credit-icon" />
       Fundy Forge
     </a>
   </div>

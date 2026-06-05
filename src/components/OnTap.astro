@@ -26,7 +26,7 @@ const onTap = beers.filter(b => b.onTap && b.tag !== 'hidden');
     </div>
     <div class="beer-grid">
       {onTap.map((beer, i) => (
-        <article
+        <div
           class="beer-card reveal"
           style={`transition-delay:${Math.min(i,3) * 0.06}s`}
           role="button"
@@ -46,7 +46,7 @@ const onTap = beers.filter(b => b.onTap && b.tag !== 'hidden');
               </div>
             </div>
           </div>
-        </article>
+        </div>
       ))}
     </div>
     <div class="ontap-footer">
