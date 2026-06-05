@@ -7,14 +7,15 @@ import { TAP_COUNT } from '../utils/constants';
 // Already onTap-first from GROQ; just drop hidden
 const beers = allBeers.filter(b => b.tag !== 'hidden');
 
-const description = 'Twelve craft beers on tap right now — six flagships that never leave, plus a rotating cast of seasonals and guest taps. Brewed in Hampton, NB.';
+const description = 'Twelve taps always flowing — six flagship brews plus rotating seasonals and guest taps. Wine, cider, cocktails, and non-alcoholic options too. Brewed in Hampton, NB.';
 ---
 
 <Layout title="The Pour List — Gridiron Brewing" description={description} activeNav="Drinks">
   <section class="page-hero grain">
     <span class="kicker">Craft Beer, Fresh · Hampton, NB</span>
     <h1>The Pour List</h1>
-    <p>{TAP_COUNT} beers on tap right now — six flagships that never leave, plus a rotating cast of seasonals and guest taps. Wine, cider, cocktails, and non-alcoholic options also available.</p>
+    <p>We keep {TAP_COUNT} taps flowing at all times. You'll always find our six trusty flagships holding down the fort, right alongside a rotating cast of seasonal brews and special guest taps.</p>
+    <p>Not much of a beer drinker? Not a problem. We've got a mighty fine selection of wine, crisp cider, and craft cocktails, plus plenty of tasty non-alcoholic options to keep everyone's glass full.</p>
   </section>
 
   <div class="tap-section">
