@@ -32,12 +32,14 @@ function to24h(timeStr: string) {
   return `${hours.padStart(2, '0')}:${minutes}`;
 }
 
-const openingHours = hours?.days.map(h => ({
-  '@type': 'OpeningHoursSpecification',
-  dayOfWeek: h.day,
-  opens: h.isClosed ? '00:00' : to24h(h.opens),
-  closes: h.isClosed ? '00:00' : to24h(h.closes),
-})) ?? [];
+const openingHours = hours?.days
+  .filter(h => !h.isClosed)
+  .map(h => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: h.day,
+    opens: to24h(h.opens),
+    closes: to24h(h.closes),
+  })) ?? [];
 
 const localBusiness = {
   '@context': 'https://schema.org',
