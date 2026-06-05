@@ -49,6 +49,9 @@ const onTap = beers.filter(b => b.onTap && b.tag !== 'hidden');
         </article>
       ))}
     </div>
+    <div class="ontap-footer">
+      <a class="btn btn-ghost" href="/beers">Beyond the Tap →</a>
+    </div>
   </div>
 </section>
 
@@ -89,6 +92,7 @@ const onTap = beers.filter(b => b.onTap && b.tag !== 'hidden');
 </div>
 
 <style>
+  .ontap-footer { display: flex; justify-content: center; margin-top: 40px; }
   .bm-templates { display: none; }
   .beer-card { cursor: pointer; transition: transform .15s var(--ease), box-shadow .15s var(--ease); }
   .beer-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px -6px rgba(0,0,0,.45); }

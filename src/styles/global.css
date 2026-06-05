@@ -153,6 +153,8 @@ img { display: block; max-width: 100%; }
 .band-dark { background: var(--ink); color: var(--cream); }
 .band-dark .section-head h2 { color: var(--cream); }
 .band-dark .kicker { color: var(--amber-bright); }
+.band-dark .btn-ghost { color: var(--cream); border-color: var(--cream); }
+.band-dark .btn-ghost:hover { background: rgba(250,243,228,.1); color: var(--cream); border-color: var(--cream); }
 .band-amber { background: var(--amber); color: var(--ink-deep); }
 .band-amber .btn-ghost { border-color: var(--ink); color: var(--ink); }
 .band-amber .btn-ghost:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
