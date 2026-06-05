@@ -11,7 +11,7 @@ const eventSchemas = buildEventSchemas(upcoming);
 const nextEvent = upcoming.find(e => e.image);
 const ogImage = nextEvent?.imageFull;
 
-const description = 'Live music most weekends, trivia every Tuesday, food trucks on the patio. Free to get in. Hampton, NB.';
+const description = 'Live music most weekends, trivia every Tuesday, food trucks on the patio. Gather your crew and head on over! Hampton, NB.';
 ---
 
 <Layout title="Events & Music — Gridiron Brewing" description={description} ogImage={ogImage} activeNav="Events">
@@ -24,7 +24,7 @@ const description = 'Live music most weekends, trivia every Tuesday, food trucks
   <section class="page-hero grain">
     <span class="kicker">What's On · Hampton, NB</span>
     <h1>Events &amp; Music</h1>
-    <p>Live music most weekends, trivia every Tuesday, food trucks on the patio, and a few surprises along the way. Always free to get in.</p>
+    <p>Live music most weekends, trivia every Tuesday, food trucks on the patio, and a few surprises along the way. Gather your crew and head on over!</p>
   </section>
 
   {upcoming.length > 0 && (
