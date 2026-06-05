@@ -6,4 +6,7 @@ export default defineConfig({
   site: 'https://gridironbrewing.com',
   output: 'static',
   integrations: [sitemap()],
+  build: {
+    inlineStylesheets: 'always',
+  },
 });

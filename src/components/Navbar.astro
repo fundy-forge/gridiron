@@ -36,7 +36,7 @@ const navLinks = [
     header.classList.toggle('scrolled', window.scrollY > 12);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  requestAnimationFrame(onScroll);
 
   const menuBtn = document.querySelector('.menu-btn') as HTMLButtonElement | null;
   const navLinks = document.querySelector('.nav-links');
