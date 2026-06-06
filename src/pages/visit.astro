@@ -89,7 +89,7 @@ const description = 'Visit Gridiron Brewing at 1051 Main Street, Hampton, NB. Tw
         </div>
         <div class="visit-cta-row">
           <a class="btn btn-amber" href="#directions">Get Directions →</a>
-          <a class="btn btn-ghost cream-ghost" href="tel:+15068324592">Call Ahead</a>
+          <a class="btn btn-ghost-cream" href="tel:+15068324592">Call Ahead</a>
         </div>
       </div>
     </div>
@@ -115,7 +115,7 @@ const description = 'Visit Gridiron Brewing at 1051 Main Street, Hampton, NB. Tw
       <div class="info-stack">
         {infoCards.map((card, i) => (
           <div class={`info-card reveal d${i + 1}`}>
-            <h4>{card.title}</h4>
+            <h4 class="label">{card.title}</h4>
             <p>{card.body}</p>
           </div>
         ))}
