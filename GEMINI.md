@@ -49,8 +49,6 @@ Tap count is **always 12**. Hardcode as `12` in stats and `twelve` in prose. Nev
 
 **Committing:**
 Use **Conventional Commits** (e.g., `feat:`, `fix:`, `style:`, `seo:`).
-Always include co-author attribution:
-`Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>`
 
 ---
 

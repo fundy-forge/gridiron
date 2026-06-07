@@ -1,7 +1,7 @@
 export const siteUrl = 'https://gridironbrewing.com';
 
 export const DEFAULT_DESCRIPTION =
-  'Small-batch craft beer brewed in Hampton, New Brunswick. Cold pints, cozy place.';
+  'Small-batch craft beer brewed in Hampton, New Brunswick. Cold Pints, Warm Welcom.';
 
 export const DEFAULT_OG_IMAGE = '/assets/photos/crowded-bar.webp';
 
